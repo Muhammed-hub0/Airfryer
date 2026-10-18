@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مقارنة القلايات الهوائية: فيليبس مقابل بلاك آند ديكر</title>
+<style>
+:root{
+  --bg:#f6f7f9;--surface:#fff;--text:#1b1f24;--muted:#5d6670;--line:#e3e6ea;
+  --a:#0b5cad;--a-soft:#e5f0fb;--b:#c2410c;--b-soft:#fdeee6;--win:#0f7a4a;--win-soft:#e3f5ec;
+  color-scheme:light;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#111418;--surface:#1a1f25;--text:#eceff2;--muted:#9aa4af;--line:#2b323a;
+    --a:#6db3f2;--a-soft:#16293b;--b:#f59a6b;--b-soft:#3a2418;--win:#4fd08f;--win-soft:#13301f;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111418;--surface:#1a1f25;--text:#eceff2;--muted:#9aa4af;--line:#2b323a;
+  --a:#6db3f2;--a-soft:#16293b;--b:#f59a6b;--b-soft:#3a2418;--win:#4fd08f;--win-soft:#13301f;
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Segoe UI",Tahoma,"Noto Sans Arabic",Arial,sans-serif;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:1.5rem;margin:8px 0 4px}
+.sub{color:var(--muted);margin:0 0 20px;font-size:.95rem}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.card.a{border-top:4px solid var(--a)}
+.card.b{border-top:4px solid var(--b)}
+.card .brand{font-size:.8rem;color:var(--muted)}
+.card h2{font-size:1.05rem;margin:2px 0 10px}
+.price{font-size:1.6rem;font-weight:700}
+.price small{font-size:.85rem;font-weight:400;color:var(--muted)}
+.card.a .price{color:var(--a)}
+.card.b .price{color:var(--b)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{font-size:.78rem;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+.sec{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:20px}
+.sec h3{margin:0 0 12px;font-size:1.05rem}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;table-layout:fixed}
+th,td{padding:10px 8px;text-align:center;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:right;color:var(--muted);font-weight:600;width:34%}
+thead th{font-size:.9rem}
+thead th.a{color:var(--a)}thead th.b{color:var(--b)}
+tr:last-child td{border-bottom:0}
+td.win{background:var(--win-soft);color:var(--win);font-weight:700}
+.legend{font-size:.82rem;color:var(--muted);margin-top:10px}
+.legend span{display:inline-block;background:var(--win-soft);color:var(--win);border-radius:4px;padding:0 8px;margin-inline-start:4px}
+.bar{margin:10px 0}
+.bar .lbl{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:4px}
+.track{height:14px;background:var(--bg);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.fill{height:100%}
+.fill.a{background:var(--a)}.fill.b{background:var(--b)}
+.sum{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sum div{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:.92rem}
+.sum h4{margin:0 0 6px;font-size:.95rem}
+.sum ul{margin:0;padding-inline-start:18px}
+.btn{display:block;margin-top:12px;text-align:center;text-decoration:none;font-weight:700;border-radius:10px;padding:10px 12px;color:var(--bg)}
+.btn.a{background:var(--a)}.btn.b{background:var(--b)}
+.disc{font-size:.8rem;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:0 0 16px}
+.cta{text-align:center}.cta h3{font-size:1.2rem}.cta p{color:var(--muted);margin:0 0 4px}
+.ctabtns{display:grid;grid-template-columns:1fr 1fr;gap:10px}.ctabtns .btn{margin-top:8px}
+.foot{color:var(--muted);font-size:.8rem;text-align:center;margin-top:8px}
+@media (max-width:560px){
+  .wrap{padding:14px 10px 32px}
+  .sum{grid-template-columns:1fr}
+  .cards{gap:8px}
+  .card{padding:12px 10px}
+  .card h2{font-size:.85rem}
+  .price{font-size:1.2rem}
+  .tag{font-size:.7rem;padding:1px 8px}
+  .sec{padding:12px 10px}
+  th,td{padding:8px 4px;font-size:.82rem}
+  th:first-child,td:first-child{width:32%;font-size:.78rem}
+  h1{font-size:1.25rem}
+  .ctabtns{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>مقارنة القلايات الهوائية</h1>
+  <p class="sub">فيليبس سلسلة 2000 مقابل بلاك آند ديكر AF7210-B5، من أمازون مصر</p>
+
+  <div class="cards">
+    <div class="card a">
+      <div class="brand">PHILIPS</div>
+      <h2>Airfryer سلسلة 2000 (NA230) – 6.2 لتر</h2>
+      <div class="price">6,058 <small>جنيه</small></div>
+      <div class="tags"><span class="tag">13 وضع طبخ</span><span class="tag">شباك شفاف</span><span class="tag">شاشة لمس</span></div>
+    </div>
+    <div class="card b">
+      <div class="brand">BLACK+DECKER</div>
+      <h2>AF7210-B5 – 7.2 لتر</h2>
+      <div class="price">5,925 <small>جنيه</small></div>
+      <div class="tags"><span class="tag">سعة أكبر</span><span class="tag">شباك شفاف</span><span class="tag">شاشة لمس</span></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h3>المواصفات الفنية</h3>
+    <div class="scroll">
+    <table>
+      <thead><tr><th>المواصفة</th><th class="a">فيليبس</th><th class="b">بلاك آند ديكر</th></tr></thead>
+      <tbody>
+        <tr><td>السعر</td><td>6,058 جنيه</td><td class="win">5,925 جنيه</td></tr>
+        <tr><td>السعة</td><td>6.2 لتر</td><td class="win">7.2 لتر</td></tr>
+        <tr><td>القوة</td><td>1700 وات</td><td class="win">1800 وات</td></tr>
+        <tr><td>الوزن</td><td>5.3 كجم</td><td class="win">4.8 كجم</td></tr>
+        <tr><td>نطاق الحرارة</td><td>60 – 200°م</td><td class="win">40 – 200°م</td></tr>
+        <tr><td>أوضاع الطبخ</td><td class="win">13 وضع</td><td>8 أوضاع</td></tr>
+        <tr><td>البرامج الجاهزة</td><td class="win">9 برامج</td><td>8 برامج</td></tr>
+        <tr><td>شباك شفاف</td><td>موجود</td><td>موجود</td></tr>
+        <tr><td>شاشة لمس رقمية</td><td>موجودة</td><td>موجودة</td></tr>
+        <tr><td>سلة تتغسل في غسالة الأطباق</td><td>نعم</td><td>نعم</td></tr>
+        <tr><td>فصل تلقائي</td><td>نعم</td><td>نعم</td></tr>
+        <tr><td>تقييمات 5 نجوم</td><td class="win">80%</td><td>74%</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="legend">الخانة <span>الخضراء</span> تعني الأفضل في هذه النقطة.</div>
+  </div>
+
+  <div class="sec">
+    <h3>نسبة تقييمات 5 نجوم</h3>
+    <div class="bar"><div class="lbl"><span>فيليبس</span><strong>80%</strong></div><div class="track"><div class="fill a" style="width:80%"></div></div></div>
+    <div class="bar"><div class="lbl"><span>بلاك آند ديكر</span><strong>74%</strong></div><div class="track"><div class="fill b" style="width:74%"></div></div></div>
+  </div>
+
+  <div class="sec">
+    <h3>الخلاصة</h3>
+    <div class="sum">
+      <div><h4>اختار بلاك آند ديكر لو…</h4><ul><li>عايز جهاز أخف في الوزن (4.8 كجم)</li><li>محتاج سعة أكبر بلتر كامل</li><li>عايز قوة أعلى وحرارة تنزل لـ 40°م</li></ul></div>
+      <div><h4>اختار فيليبس لو…</h4><ul><li>عايز أوضاع طبخ أكتر</li><li>عايز برامج جاهزة أكتر</li><li>مهتم بأعلى نسبة تقييمات 5 نجوم</li></ul></div>
+    </div>
+  </div>
+
+  <div class="sec cta">
+    <h3>جاهز تختار؟</h3>
+    <p>اختار الجهاز اللي يناسب احتياجك، وشوف السعر الحالي والعروض المتاحة دلوقتي على أمازون. تفاصيل الشحن والإرجاع في صفحة المنتج.</p>
+    <div class="ctabtns">
+      <a class="btn a" href="https://link.amazon/B04zZiE1d" target="_blank" rel="sponsored nofollow noopener">اشتري فيليبس من أمازون</a>
+      <a class="btn b" href="https://link.amazon/B05Z8Tw1W" target="_blank" rel="sponsored nofollow noopener">اشتري بلاك آند ديكر من أمازون</a>
+    </div>
+  </div>
+
+  <p class="foot">البيانات من صفحات المنتجات على أمازون مصر بتاريخ 18 أكتوبر 2026. الأسعار قابلة للتغيير، راجع السعر النهائي من صفحة المنتج قبل الشراء.</p>
+<p class="disc" style="margin:12px 0 0">إفصاح: الروابط في هذه الصفحة روابط تسويق بالعمولة. لو اشتريت من خلالها ممكن أحصل على عمولة من أمازون بدون أي تكلفة إضافية عليك.</p>
+</div>
+</body>
+</html>
