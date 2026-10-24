@@ -169,17 +169,18 @@ body {
   border-color: var(--a);
   color: var(--a);
 }
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: none;
+.empty-slot {
+  border: 2px dashed var(--line);
+  background: var(--surface);
+  border-radius: 16px;
+  padding: 28px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 50;
-  padding: 16px;
+  min-height: 180px;
 }
-.modal-backdrop.open { display: flex; }
 @media (max-width: 640px) {
   .comp-table th, .comp-table td { padding: 9px 6px; font-size: 0.84rem; }
   .comp-table th:first-child, .comp-table td:first-child { width: 34%; font-size: 0.8rem; }
@@ -197,61 +198,49 @@ body {
       </div>
       <div>
         <div class="font-extrabold text-base sm:text-lg leading-tight">دليل القلايات الهوائية في مصر</div>
-        <div class="text-xs" style="color: var(--muted);">مقارنة شاملة لـ 8 موديلات على أمازون مصر (أكتوبر 2026)</div>
+        <div class="text-xs" style="color: var(--muted);">مقارنة شاملة لأفضل الموديلات المتوفرة في السوق المصري على أمازون مصر (أكتوبر 2026)</div>
       </div>
     </div>
 
     <div class="flex items-center gap-2">
-      <button id="openEmbedBtn" type="button" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-1.5 cursor-pointer" style="background: var(--win-soft); color: var(--win); border: 1px solid var(--win);">
-        <span>&lt;/&gt;</span>
-        <span>كود Google Sites</span>
-      </button>
       <button id="themeToggleBtn" type="button" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-bold cursor-pointer surface-alt" title="تغيير المظهر">
         <span id="themeIcon">🌙</span>
       </button>
     </div>
   </div>
-
-  <!-- Navigation Tabs -->
-  <div class="max-w-5xl mx-auto px-4 pb-2 flex items-center gap-2 overflow-x-auto">
-    <button type="button" class="tab-btn active" data-tab="compareView">⚔️ المقارنة المباشرة</button>
-    <button type="button" class="tab-btn" data-tab="catalogView">🗂️ كل الأجهزة والفلترة (8)</button>
-    <button type="button" class="tab-btn" data-tab="matrixView">📊 الجدول الشامل</button>
-    <button type="button" class="tab-btn" data-tab="finderView">🧭 مساعد الاختيار الذكي</button>
-  </div>
 </header>
 
 <main class="max-w-5xl mx-auto px-4 py-6">
 
-  <!-- Hero Section -->
-  <section class="surface-card overflow-hidden mb-6">
+  <!-- Hero Section (Above the 4 Navigation Tabs) -->
+  <section class="surface-card overflow-hidden mb-5">
     <div class="grid grid-cols-1 md:grid-cols-12 items-center">
       <div class="p-5 sm:p-7 md:col-span-7">
         <span class="win-badge mb-3">تحديث بيانات أمازون مصر • أكتوبر 2026</span>
         <h1 class="text-2xl sm:text-3xl font-extrabold mb-2 leading-snug">قارن بين أشهر القلايات الهوائية واختار الأنسب لمطبخك</h1>
         <p class="text-sm sm:text-base mb-4" style="color: var(--muted);">
-          مقارنة تفصيلية بين 8 أجهزة من <strong>فيليبس، بلاك آند ديكر، ميديا، تيفال، تورنيدو، كينوود، وفريش</strong> من حيث السعة، القوة الكهربائية، وجود شباك شفاف، تقسيم الحلة، الضمان، والسعر الفعلي.
+          دليلك التفاعلي للمقارنة بين أفضل القلايات الهوائية المتوفرة في السوق المصري من حيث السعة الفعلية، القوة الكهربائية، تصميم الحلة، الضمان، والسعر الحالي.
         </p>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center">
           <div class="surface-alt rounded-xl p-2.5">
-            <div class="text-xs" style="color: var(--muted);">أقل سعر</div>
-            <div class="font-extrabold text-sm sm:text-base" style="color: var(--win);">4,203 ج.م</div>
-            <div class="text-xs" style="color: var(--muted);">فريش 7 لتر</div>
+            <div class="text-xs" style="color: var(--muted);">الخطوة ١</div>
+            <div class="font-extrabold text-sm sm:text-base" style="color: var(--a);">اختر جهازين</div>
+            <div class="text-xs" style="color: var(--muted);">من القائمة بالأسفل</div>
           </div>
           <div class="surface-alt rounded-xl p-2.5">
-            <div class="text-xs" style="color: var(--muted);">أكبر سعة</div>
-            <div class="font-extrabold text-sm sm:text-base" style="color: var(--a);">9.0 لتر</div>
-            <div class="text-xs" style="color: var(--muted);">ميديا 2200 وات</div>
+            <div class="text-xs" style="color: var(--muted);">الخطوة ٢</div>
+            <div class="font-extrabold text-sm sm:text-base" style="color: var(--win);">قارن المواصفات</div>
+            <div class="text-xs" style="color: var(--muted);">تلوين تلقائي للأفضل</div>
           </div>
           <div class="surface-alt rounded-xl p-2.5">
-            <div class="text-xs" style="color: var(--muted);">أعلى تقييم براند</div>
-            <div class="font-extrabold text-sm sm:text-base" style="color: var(--b);">9.5 / 10</div>
-            <div class="text-xs" style="color: var(--muted);">فيليبس 2000</div>
+            <div class="text-xs" style="color: var(--muted);">الخطوة ٣</div>
+            <div class="font-extrabold text-sm sm:text-base" style="color: var(--b);">اعرف الخلاصة</div>
+            <div class="text-xs" style="color: var(--muted);">ترشيح حسب احتياجك</div>
           </div>
           <div class="surface-alt rounded-xl p-2.5">
-            <div class="text-xs" style="color: var(--muted);">أطول ضمان محلي</div>
-            <div class="font-extrabold text-sm sm:text-base">سنتين</div>
-            <div class="text-xs" style="color: var(--muted);">ميديا 9 لتر</div>
+            <div class="text-xs" style="color: var(--muted);">الخطوة ٤</div>
+            <div class="font-extrabold text-sm sm:text-base">راجع السعر</div>
+            <div class="text-xs" style="color: var(--muted);">عبر روابط أمازون مصر</div>
           </div>
         </div>
       </div>
@@ -260,6 +249,14 @@ body {
       </div>
     </div>
   </section>
+
+  <!-- Navigation Tabs (Below Hero Banner) -->
+  <nav class="surface-card p-2 mb-6 flex items-center gap-2 overflow-x-auto" aria-label="أقسام الموقع">
+    <button type="button" class="tab-btn active" data-tab="compareView">⚔️ المقارنة المباشرة</button>
+    <button type="button" class="tab-btn" data-tab="catalogView">🗂️ كل الأجهزة والفلترة</button>
+    <button type="button" class="tab-btn" data-tab="matrixView">📊 الجدول الشامل</button>
+    <button type="button" class="tab-btn" data-tab="finderView">🧭 مساعد الاختيار الذكي</button>
+  </nav>
 
   <!-- TAB 1: HEAD-TO-HEAD COMPARISON VIEW -->
   <section id="compareView" class="tab-panel">
@@ -297,7 +294,7 @@ body {
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6" id="cards"></div>
 
     <!-- Technical Specs Comparison Table -->
-    <div class="surface-card p-4 sm:p-6 mb-6 needboth">
+    <div class="surface-card p-4 sm:p-6 mb-6 needboth" style="display: none;">
       <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
         <h2 class="text-lg font-extrabold m-0">📋 جدول المقارنة الفنية</h2>
         <div class="text-xs" style="color: var(--muted);">
@@ -313,22 +310,22 @@ body {
     </div>
 
     <!-- Visual Rating & Spec Bars -->
-    <div class="surface-card p-4 sm:p-6 mb-6 needboth" id="barsec">
+    <div class="surface-card p-4 sm:p-6 mb-6 needboth" id="barsec" style="display: none;">
       <h2 class="text-lg font-extrabold mb-4">📊 المؤشرات البصرية والتقييمات</h2>
       <div id="bars" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
       <p class="text-xs mt-4 mb-0" style="color: var(--muted);">
-        * جودة البراند تقييم شخصي مبني على متابعة تجارب المستخدمين وخدمات ما بعد البيع، وليس تقييمًا رسميًا.
+        جودة البراند تقييم شخصي مبني على متابعة تجارب المستخدمين، ويعبر عن أفضل قيمة مقابل السعر، وليس تقييمًا رسميًا.
       </p>
     </div>
 
     <!-- Decision Summary ("اختار ... لو") -->
-    <div class="surface-card p-4 sm:p-6 mb-6 needboth">
+    <div class="surface-card p-4 sm:p-6 mb-6 needboth" style="display: none;">
       <h2 class="text-lg font-extrabold mb-4">💡 الخلاصة: أيهما تختار؟</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="sum"></div>
     </div>
 
     <!-- CTA Section -->
-    <div class="surface-card p-5 sm:p-6 text-center mb-6" id="ctasec">
+    <div class="surface-card p-5 sm:p-6 text-center mb-6" id="ctasec" style="display: none;">
       <h2 class="text-xl font-extrabold mb-1">جاهز تختار؟</h2>
       <p class="text-sm mb-4" style="color: var(--muted);">
         اختار الجهاز اللي يناسب احتياجك، وشوف السعر الحالي والعروض المتاحة دلوقتي على أمازون مصر. تفاصيل الشحن والإرجاع في صفحة المنتج.
@@ -343,14 +340,14 @@ body {
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
         <div>
           <label for="searchInput" class="block text-xs font-bold mb-1" style="color: var(--muted);">بحث بالاسم أو الماركة</label>
-          <input id="searchInput" type="text" placeholder="مثال: فيليبس، ميديا، 8 لتر..." class="w-full px-3 py-2 rounded-xl text-sm surface-alt" style="color: var(--text);" />
+          <input id="searchInput" type="text" placeholder="مثال: فيليبس، ميديا، تيفال..." class="w-full px-3 py-2 rounded-xl text-sm surface-alt" style="color: var(--text);" />
         </div>
         <div>
           <label for="capFilter" class="block text-xs font-bold mb-1" style="color: var(--muted);">السعة اللترية</label>
           <select id="capFilter" class="w-full px-3 py-2 rounded-xl text-sm surface-alt font-semibold" style="color: var(--text);">
-            <option value="all">كل السعات (6.2 إلى 9 لتر)</option>
+            <option value="all">كل السعات المتوفرة</option>
             <option value="7">7 لتر فأكثر</option>
-            <option value="8">8 لتر فأكثر (عائلية كبيرة)</option>
+            <option value="8">سعات عائلية كبيرة</option>
           </select>
         </div>
         <div>
@@ -409,7 +406,7 @@ body {
     <div class="surface-card p-4 sm:p-6 mb-6">
       <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
         <div>
-          <h2 class="text-lg font-extrabold m-0">📊 الجدول الشامل لجميع القلايات الهوائية (8 أجهزة)</h2>
+          <h2 class="text-lg font-extrabold m-0">📊 الجدول الشامل لأفضل الموديلات المتوفرة في السوق المصري</h2>
           <p class="text-xs m-0" style="color: var(--muted);">اضغط على أي جهاز لاختياره في المقارنة الثنائية أو شرائه من أمازون مصر</p>
         </div>
       </div>
@@ -423,7 +420,7 @@ body {
   <section id="finderView" class="tab-panel" style="display: none;">
     <div class="surface-card p-5 sm:p-6 mb-6">
       <h2 class="text-xl font-extrabold mb-1">🧭 مساعد الاختيار الذكي</h2>
-      <p class="text-sm mb-5" style="color: var(--muted);">جاوب على 3 أسئلة سريعة وهنرشحلك أنسب قلاية هوائية لاحتياجك من الأجهزة الـ 8.</p>
+      <p class="text-sm mb-5" style="color: var(--muted);">جاوب على 3 أسئلة سريعة وهنرشحلك أنسب قلاية هوائية لاحتياجك من أفضل الموديلات المتوفرة في السوق المصري.</p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
         <div class="surface-alt p-4 rounded-xl">
@@ -431,7 +428,7 @@ body {
           <select id="qBudget" class="w-full p-2.5 rounded-lg text-sm font-semibold" style="background: var(--surface); color: var(--text); border: 1px solid var(--line);">
             <option value="low">اقتصادية (أقل من 5,500 ج.م)</option>
             <option value="mid" selected>متوسطة (حتى 6,500 ج.م)</option>
-            <option value="high">مفتوحة (حتى 8,500 ج.م)</option>
+            <option value="high">مفتوحة (أعلى فئة متوفرة)</option>
           </select>
         </div>
 
@@ -439,7 +436,7 @@ body {
           <label for="qSize" class="block text-sm font-extrabold mb-2">2. حجم الاستخدام والعائلة؟</label>
           <select id="qSize" class="w-full p-2.5 rounded-lg text-sm font-semibold" style="background: var(--surface); color: var(--text); border: 1px solid var(--line);">
             <option value="med">متوسط (6 إلى 7 لتر)</option>
-            <option value="large" selected>عائلي كبير (7.2 إلى 9 لتر)</option>
+            <option value="large" selected>عائلي كبير (أكثر من 7 لتر)</option>
             <option value="divider">أحتاج تقسيم الحلة لصنفين معًا</option>
           </select>
         </div>
@@ -449,7 +446,7 @@ body {
           <select id="qPriority" class="w-full p-2.5 rounded-lg text-sm font-semibold" style="background: var(--surface); color: var(--text); border: 1px solid var(--line);">
             <option value="window" selected>شباك شفاف لمتابعة التسوية</option>
             <option value="warranty">ضمان محلي في مصر</option>
-            <option value="brand">أعلى اسم براند واعتمادية</option>
+            <option value="brand">أعلى اسم براند وأفضل قيمة مقابل السعر</option>
             <option value="power">أعلى قوة تسوية وحرارة</option>
           </select>
         </div>
@@ -465,37 +462,11 @@ body {
       البيانات من صفحات المنتجات على أمازون مصر في أكتوبر 2026. الأسعار قابلة للتغيير، راجع السعر النهائي من صفحة المنتج قبل الشراء.
     </p>
     <div class="surface-card p-3.5 text-xs text-right max-w-3xl mx-auto" style="color: var(--muted);">
-      <strong>إفصاح:</strong> الروابط في هذه الصفحة روابط تسويق بالعمولة. لو اشتريت من خلالها ممكن أحصل على عمولة من أمازون بدون أي تكلفة إضافية عليك.
+      <strong>إفصاح:</strong> عند اتخاذ قرار الشراء برجاء الدخول من الروابط بالصفحة لأنه يتم احتساب عمولة لي من أمازون في حال قام أحد بالشراء من خلالي 🙏🏻 (بدون أي تكلفة إضافية عليك).
     </div>
   </footer>
 
 </main>
-
-<!-- Google Sites Embed Code Modal -->
-<div id="embedModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="embedModalTitle">
-  <div class="surface-card w-full max-w-2xl p-5 sm:p-6 shadow-2xl">
-    <div class="flex items-center justify-between gap-2 mb-3">
-      <h3 id="embedModalTitle" class="text-lg font-extrabold m-0">🌐 إضافة الموقع داخل Google Sites</h3>
-      <button id="closeEmbedBtn" type="button" class="px-3 py-1 rounded-lg surface-alt text-sm font-bold cursor-pointer">✕ إغلاق</button>
-    </div>
-    <p class="text-xs sm:text-sm mb-3" style="color: var(--muted);">
-      لإضافة أداة المقارنة التفاعلية مباشرة في موقعك على <strong>Google Sites</strong>، اتبع الخطوات التالية:
-    </p>
-    <ol class="text-xs sm:text-sm mb-4 space-y-1 pr-5" style="color: var(--text);">
-      <li>افتح موقعك على <strong>Google Sites</strong> ومن القائمة الجانبية اختر <strong>إدراج (Insert)</strong> ثم <strong>تضمين (Embed)</strong>.</li>
-      <li>اختر تبويب <strong>تضمين الرمز (Embed code)</strong>.</li>
-      <li>اضغط على زر <strong>"نسخ كود HTML"</strong> بالأسفل، ثم الصقه في المربع واضغط <strong>التالي (Next)</strong> ثم <strong>إدراج (Insert)</strong>.</li>
-    </ol>
-    <div class="flex items-center justify-between gap-2 mb-2">
-      <span class="text-xs font-bold" style="color: var(--muted);">كود التضمين الجاهز (HTML متكامل وخفيف لـ Google Sites):</span>
-      <button id="copyEmbedCodeBtn" type="button" class="px-4 py-1.5 rounded-xl text-xs font-extrabold cursor-pointer btn-a">
-        📋 نسخ كود HTML
-      </button>
-    </div>
-    <textarea id="embedCodeTextarea" readonly class="w-full h-44 p-3 rounded-xl text-xs font-mono surface-alt" dir="ltr"></textarea>
-    <div id="copyStatusMsg" class="text-xs font-bold mt-2" style="color: var(--win); min-height: 1.25rem;"></div>
-  </div>
-</div>
 
 <script>
 const P = [
@@ -504,7 +475,7 @@ const P = [
   {id:"midea-mf-cy85wk",brand:"MIDEA",ar:"ميديا",short:"ميديا 9 لتر",name:"Midea Airfryer MF-CY85WK – 9 لتر",price:5998,cap:9,divider:true,power:2200,temp:[40,230],presets:10,win:true,touch:true,dish:true,warranty:"15 يوم إرجاع من أمازون<br>ضمان محلي سنتين",brand_score:8.5,link:"https://link.amazon/B02hszxMw"},
   {id:"bd-saf80w",brand:"BLACK+DECKER",ar:"بلاك آند ديكر",short:"بلاك آند ديكر 8 لتر باب إزاز",name:"SAF80W-B5 – 8 لتر باب إزاز",price:5249,cap:8,power:1700,temp:[80,200],presets:7,win:true,touch:true,dish:true,warranty:"15 يوم إرجاع من أمازون<br>ضمان دولي",brand_score:9,link:"https://link.amazon/B036syi3r"},
   {id:"kenwood-hfm80",brand:"KENWOOD",ar:"كينوود",short:"كينوود 7 لتر",name:"Kenwood HFM80 – 7 لتر",price:6559,cap:7,power:1800,temp:[35,200],presets:12,win:false,touch:true,dish:false,warranty:"15 يوم إرجاع من أمازون<br>لا يوجد ضمان",brand_score:6,link:"https://link.amazon/B02Hbgfco"},
-  {id:"fresh-faf-d1800w",brand:"FRESH",ar:"فريش",short:"فريش 7 لتر",name:"Fresh FAF-D1800W – 7 لتر",price:4203,cap:7,power:1800,temp:[80,200],presets:8,win:false,touch:true,dish:"غير محدد",warranty:"15 يوم إرجاع من أمازون<br>ضمان محلي سنة",brand_score:6,link:"https://link.amazon/B01E7ador"},
+  {id:"fresh-faf-d1800w",brand:"FRESH",ar:"فريش",short:"فريش 7 لتر",name:"Fresh FAF-D1800W – 7 لتر",price:4203,cap:7,power:1800,temp:[80,200],presets:8,win:false,touch:true,dish:true,warranty:"15 يوم إرجاع من أمازون<br>ضمان محلي سنة",brand_score:6,link:"https://link.amazon/B01E7ador"},
   {id:"tornado-tfe-a1808ts1a",brand:"TORNADO",ar:"تورنيدو",short:"تورنيدو 8 لتر",name:"Tornado TFE-A1808TS1A – 8 لتر",price:7159,cap:8,power:1800,temp:[null,200],presets:9,win:false,touch:true,dish:false,warranty:"15 يوم إرجاع من أمازون<br>ضمان محلي سنة",brand_score:9,link:"https://link.amazon/B06Sc31Dc"},
   {id:"tefal-ey8018eg",brand:"TEFAL",ar:"تيفال",short:"تيفال 6.5 لتر",name:"Tefal Easy Fry & Grill EY8018EG – 6.5 لتر",price:8370,cap:6.5,divider:true,power:1800,temp:[40,220],presets:8,win:false,touch:true,dish:true,warranty:"15 يوم إرجاع من أمازون<br>ضمان محلي سنة",brand_score:9,link:"https://link.amazon/B0fps4TGg"}
 ];
@@ -536,7 +507,7 @@ const W = {
 };
 
 const $ = id => document.getElementById(id);
-let a = 0, b = 2; // Default: Philips 6.2L vs Midea 9L
+let a = -1, b = -1; // Default: no devices selected initially
 
 function readHash() {
   try {
@@ -550,7 +521,10 @@ function readHash() {
 
 function writeHash() {
   try {
-    if (a < 0 || b < 0) return;
+    if (a < 0 || b < 0) {
+      if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+      return;
+    }
     history.replaceState(null, "", "#a=" + P[a].id + "&b=" + P[b].id);
   } catch (e) {}
 }
@@ -562,6 +536,17 @@ function fillSelects() {
   $("sb").innerHTML = ph + o;
   $("sa").value = a;
   $("sb").value = b;
+}
+
+function renderEmptySlot(slotClass, label) {
+  const colorVar = slotClass === "a" ? "var(--a)" : "var(--b)";
+  return (
+    '<div class="empty-slot">' +
+      '<div class="text-2xl mb-2" style="color: ' + colorVar + ';">⬆️</div>' +
+      '<div class="font-extrabold text-base mb-1">' + label + '</div>' +
+      '<p class="text-xs m-0" style="color: var(--muted);">اختار الجهاز من القائمة بالأعلى لبدء المقارنة</p>' +
+    '</div>'
+  );
 }
 
 function renderCard(p, slotClass, badgeLabel) {
@@ -599,7 +584,10 @@ function renderCard(p, slotClass, badgeLabel) {
 
 function renderComparison() {
   const A = P[a], B = P[b];
-  $("cards").innerHTML = (A ? renderCard(A, "a", "الجهاز الأول") : "") + (B ? renderCard(B, "b", "الجهاز الثاني") : "");
+  $("cards").innerHTML =
+    (A ? renderCard(A, "a", "الجهاز الأول") : renderEmptySlot("a", "اختار الجهاز الأول")) +
+    (B ? renderCard(B, "b", "الجهاز الثاني") : renderEmptySlot("b", "اختار الجهاز الثاني"));
+
   const both = !!(A && B);
   document.querySelectorAll(".needboth").forEach(e => e.style.display = both ? "" : "none");
   $("ctasec").style.display = (A || B) ? "" : "none";
@@ -608,6 +596,7 @@ function renderComparison() {
     $("cta").innerHTML = [[A, "a"], [B, "b"]].filter(q => q[0]).map(q =>
       '<a class="py-3 px-4 rounded-xl font-extrabold no-underline btn-' + q[1] + '" href="' + q[0].link + '" target="_blank" rel="sponsored nofollow noopener">اشتري ' + q[0].short + ' من أمازون</a>'
     ).join("");
+    writeHash();
     return;
   }
 
@@ -637,8 +626,8 @@ function renderComparison() {
         if (W[r.k]) {
           const msg = W[r.k](bw);
           if (msg) (w === 1 ? wa : wb).push(msg);
-        } else if (r.k === "price" && Math.abs(x - y) >= 200) {
-          (w === 1 ? wa : wb).push("سعر أوفر بـ " + n(Math.abs(x - y)) + " جنيه");
+        } else if (r.k === "price" && Math.abs(x - y) >= 500) {
+          (w === 1 ? wa : wb).push("سعر أقل بـ " + n(Math.abs(x - y)) + " جنيه");
         }
       }
     }
@@ -708,11 +697,11 @@ function handlePickChange(e) {
   b = +$("sb").value;
   if (a >= 0 && a === b) {
     if (e && e.target.id === "sa") {
-      b = (a + 1) % P.length;
-      $("sb").value = b;
+      b = -1;
+      $("sb").value = -1;
     } else {
-      a = (b + 1) % P.length;
-      $("sa").value = a;
+      a = -1;
+      $("sa").value = -1;
     }
   }
   renderComparison();
@@ -750,7 +739,11 @@ function renderCatalog() {
     return y.brand_score - x.brand_score;
   });
 
-  $("catalogCount").textContent = "عدد الأجهزة المطابقة: " + filtered.length + " من " + P.length + " أجهزة";
+  if (filtered.length === P.length) {
+    $("catalogCount").textContent = "عرض أفضل الموديلات المتوفرة في السوق المصري";
+  } else {
+    $("catalogCount").textContent = "الموديلات المطابقة للفلترة الحالية: " + filtered.length;
+  }
 
   if (!filtered.length) {
     $("catalogGrid").innerHTML =
@@ -818,7 +811,7 @@ function renderFullMatrix() {
         '<td class="p-3 text-center">' + p.power + ' وات</td>' +
         '<td class="p-3 text-center">' + yn(p.win) + '</td>' +
         '<td class="p-3 text-center">' + yn(p.dish) + '</td>' +
-        '<td class="p-3 text-center text-xs">' + p.warranty.replace("<br>", "<br>") + '</td>' +
+        '<td class="p-3 text-center text-xs">' + p.warranty + '</td>' +
         '<td class="p-3 text-center font-bold ' + (isBestScore ? 'win-cell' : '') + '">' + p.brand_score + '/10</td>' +
         '<td class="p-3 text-center">' +
           '<a href="' + p.link + '" target="_blank" rel="sponsored nofollow noopener" class="inline-block px-3 py-1.5 rounded-lg text-xs font-bold no-underline btn-a">أمازون ↗</a>' +
@@ -916,78 +909,10 @@ function switchTab(tabId) {
   });
 }
 
-// Generate clean lightweight embed code for Google Sites
-function buildGoogleSitesEmbedCode() {
-  return `<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>قارن بين القلايات الهوائية</title>
-<style>
-:root{--bg:#f6f7f9;--surface:#fff;--text:#1b1f24;--muted:#5d6670;--line:#e3e6ea;--a:#0b5cad;--b:#c2410c;--win:#0f7a4a;--win-soft:#e3f5ec;}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.6}
-.wrap{max-width:900px;margin:0 auto;padding:20px 16px 40px}
-h1{font-size:1.5rem;margin:8px 0 4px}.sub{color:var(--muted);margin:0 0 16px;font-size:.95rem}
-.pick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.pick label{font-size:.85rem;color:var(--muted);display:block}
-.pick select{width:100%;margin-top:4px;padding:10px 8px;font:inherit;font-size:.92rem;color:var(--text);background:var(--surface);border:2px solid var(--line);border-radius:10px}
-#sa{border-color:var(--a)}#sb{border-color:var(--b)}
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
-.card.a{border-top:4px solid var(--a)}.card.b{border-top:4px solid var(--b)}
-.brand{font-size:.8rem;color:var(--muted)}.card h2{font-size:1.05rem;margin:2px 0 10px}
-.price{font-size:1.6rem;font-weight:700}.price small{font-size:.85rem;font-weight:400;color:var(--muted)}
-.card.a .price{color:var(--a)}.card.b .price{color:var(--b)}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.tag{font-size:.78rem;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
-.sec{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:20px}
-.sec h3{margin:0 0 12px;font-size:1.05rem}
-table{width:100%;border-collapse:collapse;table-layout:fixed}
-th,td{padding:10px 8px;text-align:center;border-bottom:1px solid var(--line)}
-th:first-child,td:first-child{text-align:right;color:var(--muted);font-weight:600;width:34%}
-th.a{color:var(--a)}th.b{color:var(--b)}tr:last-child td{border-bottom:0}
-td.win{background:var(--win-soft);color:var(--win);font-weight:700}
-td small{display:block;font-weight:400;font-size:.72rem;color:var(--muted)}td.win small{color:var(--win)}
-.sum{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.sum div{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;font-size:.92rem}
-.ctabtns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.btn{display:block;margin-top:8px;text-align:center;text-decoration:none;font-weight:700;border-radius:10px;padding:10px 12px;color:#fff}
-.btn.a{background:var(--a)}.btn.b{background:var(--b)}
-</style>
-</head>
-<body>
-<div class="wrap">
-  <h1>قارن بين القلايات الهوائية</h1>
-  <p class="sub">اختار جهازين وشوف المقارنة، البيانات من أمازون مصر</p>
-  <div class="pick">
-    <label>الجهاز الأول<select id="sa"></select></label>
-    <label>الجهاز التاني<select id="sb"></select></label>
-  </div>
-  <div class="cards" id="cards"></div>
-  <div class="sec"><h3>المواصفات الفنية</h3><table><thead id="th"></thead><tbody id="tb"></tbody></table></div>
-  <div class="sec"><h3>الخلاصة</h3><div class="sum" id="sum"></div></div>
-  <div class="sec"><div class="ctabtns" id="cta"></div></div>
-</div>
-<script>
-const P=${JSON.stringify(P)};
-const n=v=>v.toLocaleString("en-US"),yn=v=>v===true?"نعم":v===false?"لا":v;
-const R=[{k:"cap",l:"السعة",f:(v,p)=>v+" لتر"+(p&&p.divider?"<small>مع فاصل لتقسيم الحلة</small>":""),best:"max"},{k:"power",l:"القوة",f:v=>v+" وات",best:"max"},{k:"temp",l:"نطاق الحرارة",f:v=>v[0]==null?"حتى "+v[1]+"°م":v[0]+" – "+v[1]+"°م",best:"max",sc:v=>v[0]==null?null:v[1]-v[0]},{k:"presets",l:"البرامج الجاهزة",f:v=>v+(v>=3&&v<=10?" برامج":" برنامج"),best:"max"},{k:"win",l:"شباك شفاف",f:yn},{k:"touch",l:"شاشة لمس رقمية",f:yn},{k:"dish",l:"سلة تتغسل في غسالة الأطباق",f:yn},{k:"warranty",l:"الضمان",f:v=>v},{k:"brand_score",l:"جودة البراند",f:v=>v+" من 10",best:"max"},{k:"price",l:"السعر",f:v=>n(v)+" جنيه",best:"min"}];
-const W={cap:v=>"سعة أكبر ("+v+" لتر)",power:v=>"قوة أعلى ("+v+" وات)",presets:v=>"برامج جاهزة أكتر ("+v+")",brand_score:v=>"جودة براند أعلى ("+v+" من 10)"};
-const $=id=>document.getElementById(id);let a=0,b=2;
-function fill(){const o=P.map((p,i)=>'<option value="'+i+'">'+p.short+"</option>").join("");$("sa").innerHTML=o;$("sb").innerHTML=o;$("sa").value=a;$("sb").value=b}
-function render(){const A=P[a],B=P[b];$("cards").innerHTML=[[A,"a"],[B,"b"]].map(q=>'<div class="card '+q[1]+'"><div class="brand">'+q[0].brand+"</div><h2>"+q[0].short+'</h2><div class="price">'+n(q[0].price)+" <small>جنيه</small></div></div>").join("");$("th").innerHTML='<tr><th>المواصفة</th><th class="a">'+A.short+'</th><th class="b">'+B.short+"</th></tr>";const wa=[],wb=[];$("tb").innerHTML=R.map(r=>{const x=A[r.k],y=B[r.k];let w=0;if(r.best){const s=r.sc||(v=>v),sx=s(x),sy=s(y);if(sx!=null&&sy!=null&&sx!==sy){w=(r.best==="max"?sx>sy:sx<sy)?1:2;if(W[r.k])(w===1?wa:wb).push(W[r.k](w===1?x:y))}}return"<tr><td>"+r.l+'</td><td class="'+(w===1?"win":"")+'">'+r.f(x,A)+'</td><td class="'+(w===2?"win":"")+'">'+r.f(y,B)+"</td></tr>"}).join("");$("sum").innerHTML=[[A,wa],[B,wb]].map(q=>"<div><h4>اختار "+q[0].short+" لو…</h4><ul>"+(q[1].length?q[1].map(t=>"<li>"+t+"</li>").join(""):"<li>مواصفات متوازنة</li>")+"</ul></div>").join("");$("cta").innerHTML=[[A,"a"],[B,"b"]].map(q=>'<a class="btn '+q[1]+'" href="'+q[0].link+'" target="_blank" rel="sponsored nofollow noopener">اشتري '+q[0].short+" من أمازون</a>").join("")}
-fill();$("sa").onchange=()=>{a=+$("sa").value;render()};$("sb").onchange=()=>{b=+$("sb").value;render()};render();
-<\/script>
-</body>
-</html>`;
-}
-
 // Event Listeners Initialization
 function initApp() {
   readHash();
-  if (a < 0) a = 0;
-  if (b < 0 || a === b) b = (a === 2 ? 1 : 2);
+  if (a >= 0 && a === b) b = -1;
 
   fillSelects();
   renderComparison();
@@ -1055,10 +980,10 @@ function initApp() {
     const idx = parseInt(btn.getAttribute("data-idx"), 10);
     if (slot === "a") {
       a = idx;
-      if (b === a) b = (a + 1) % P.length;
+      if (b === a) b = -1;
     } else {
       b = idx;
-      if (a === b) a = (b + 1) % P.length;
+      if (a === b) a = -1;
     }
     $("sa").value = a;
     $("sb").value = b;
@@ -1094,44 +1019,6 @@ function initApp() {
     } else {
       root.setAttribute("data-theme", "dark");
       $("themeIcon").textContent = "☀️";
-    }
-  });
-
-  // Google Sites Embed Modal
-  $("openEmbedBtn").addEventListener("click", () => {
-    $("embedCodeTextarea").value = buildGoogleSitesEmbedCode();
-    $("copyStatusMsg").textContent = "";
-    $("embedModal").classList.add("open");
-  });
-
-  $("closeEmbedBtn").addEventListener("click", () => {
-    $("embedModal").classList.remove("open");
-  });
-
-  $("embedModal").addEventListener("click", e => {
-    if (e.target === $("embedModal")) {
-      $("embedModal").classList.remove("open");
-    }
-  });
-
-  $("copyEmbedCodeBtn").addEventListener("click", () => {
-    const ta = $("embedCodeTextarea");
-    ta.select();
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(ta.value).then(() => {
-          $("copyStatusMsg").textContent = "✓ تم نسخ كود HTML بنجاح! يمكنك الآن لصقه داخل Google Sites (Embed Code).";
-        }).catch(() => {
-          document.execCommand("copy");
-          $("copyStatusMsg").textContent = "✓ تم نسخ كود HTML بنجاح! يمكنك الآن لصقه داخل Google Sites (Embed Code).";
-        });
-      } else {
-        document.execCommand("copy");
-        $("copyStatusMsg").textContent = "✓ تم نسخ كود HTML بنجاح! يمكنك الآن لصقه داخل Google Sites (Embed Code).";
-      }
-    } catch (err) {
-      document.execCommand("copy");
-      $("copyStatusMsg").textContent = "✓ تم نسخ كود HTML بنجاح!";
     }
   });
 }
