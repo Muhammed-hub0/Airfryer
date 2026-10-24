@@ -48,6 +48,7 @@ th:first-child,td:first-child{text-align:right;color:var(--muted);font-weight:60
 th{font-size:.9rem}th.a{color:var(--a)}th.b{color:var(--b)}
 tr:last-child td{border-bottom:0}
 td.win{background:var(--win-soft);color:var(--win);font-weight:700}
+td small{display:block;font-weight:400;font-size:.72rem;color:var(--muted)}td.win small{color:var(--win)}
 .legend{font-size:.82rem;color:var(--muted);margin-top:10px}
 .legend span{display:inline-block;background:var(--win-soft);color:var(--win);border-radius:4px;padding:0 8px;margin-inline-start:4px}
 .bar{margin:10px 0}.lbl{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:4px}
@@ -101,18 +102,19 @@ td.win{background:var(--win-soft);color:var(--win);font-weight:700}
 <script>
 // لإضافة جهاز: انسخ سطر منتج وعدّل بياناته. اترك أي خاصية ناقصة بدون كتابتها وهتتشال من الجدول.
 const P=[
-{id:"philips-2000",brand:"PHILIPS",ar:"فيليبس",short:"فيليبس 6.2 لتر باب إزاز",name:"Airfryer سلسلة 2000 (NA230) – 6.2 لتر",price:6058,cap:6.2,power:1700,temp:[60,200],presets:9,win:true,touch:true,dish:true,warranty:"15 يوم إرجاع من أمازون<br>ضمان دولي",brand_score:9.5,link:"https://link.amazon/B04zZiE1d"},
+{id:"philips-2000",brand:"PHILIPS",ar:"فيليبس",short:"فيليبس 6.2 لتر باب إزاز",name:"Airfryer سلسلة 2000 (NA230) – 6.2 لتر",price:6399,cap:6.2,power:1700,temp:[60,200],presets:9,win:true,touch:true,dish:true,warranty:"15 يوم إرجاع من أمازون<br>ضمان دولي",brand_score:9.5,link:"https://link.amazon/B04zZiE1d"},
 {id:"bd-af7210",brand:"BLACK+DECKER",ar:"بلاك آند ديكر",short:"بلاك آند ديكر 7.2 لتر",name:"AF7210-B5 – 7.2 لتر",price:5925,cap:7.2,power:1800,temp:[40,200],presets:8,win:true,touch:true,dish:true,warranty:"15 يوم إرجاع من أمازون<br>ضمان دولي",brand_score:9,link:"https://link.amazon/B05Z8Tw1W"},
-{id:"midea-mf-cy85wk",brand:"MIDEA",ar:"ميديا",short:"ميديا 9 لتر",name:"Midea Airfryer MF-CY85WK – 9 لتر",price:5997,cap:9,power:2200,temp:[40,230],presets:10,win:true,touch:true,dish:true,warranty:"15 يوم إرجاع من أمازون<br>ضمان محلي سنتين",brand_score:8.5,link:"https://link.amazon/B02hszxMw"},
-{id:"bd-saf80w",brand:"BLACK+DECKER",ar:"بلاك آند ديكر",short:"بلاك آند ديكر 8 لتر باب إزاز",price:5220,cap:8,power:1700,temp:[80,200],presets:7,win:true,touch:true,dish:true,warranty:"15 يوم إرجاع من أمازون<br>ضمان دولي",brand_score:9,link:"https://link.amazon/B036syi3r"},
-{id:"kenwood-hfm80",brand:"KENWOOD",ar:"كينوود",short:"كينوود 7 لتر",price:6368,cap:7,power:1800,temp:[35,200],presets:12,win:false,touch:true,dish:false,warranty:"15 يوم إرجاع من أمازون<br>لا يوجد ضمان",brand_score:6,link:"https://link.amazon/B02Hbgfco"},
-{id:"fresh-faf-d1800w",brand:"FRESH",ar:"فريش",short:"فريش 7 لتر",price:4199,cap:7,power:1800,temp:[80,200],presets:8,win:false,touch:true,dish:"غير محدد",warranty:"15 يوم إرجاع من أمازون<br>ضمان محلي سنة",brand_score:6,link:"https://link.amazon/B01E7ador"},
-{id:"tornado-tfe-a1808ts1a",brand:"TORNADO",ar:"تورنيدو",short:"تورنيدو 8 لتر",price:7159,cap:8,power:1800,temp:[null,200],presets:9,win:false,touch:true,dish:false,warranty:"15 يوم إرجاع من أمازون<br>ضمان محلي سنة",brand_score:9,link:"https://link.amazon/B06Sc31Dc"}
+{id:"midea-mf-cy85wk",brand:"MIDEA",ar:"ميديا",short:"ميديا 9 لتر",name:"Midea Airfryer MF-CY85WK – 9 لتر",price:5998,cap:9,divider:true,power:2200,temp:[40,230],presets:10,win:true,touch:true,dish:true,warranty:"15 يوم إرجاع من أمازون<br>ضمان محلي سنتين",brand_score:8.5,link:"https://link.amazon/B02hszxMw"},
+{id:"bd-saf80w",brand:"BLACK+DECKER",ar:"بلاك آند ديكر",short:"بلاك آند ديكر 8 لتر باب إزاز",price:5249,cap:8,power:1700,temp:[80,200],presets:7,win:true,touch:true,dish:true,warranty:"15 يوم إرجاع من أمازون<br>ضمان دولي",brand_score:9,link:"https://link.amazon/B036syi3r"},
+{id:"kenwood-hfm80",brand:"KENWOOD",ar:"كينوود",short:"كينوود 7 لتر",price:6559,cap:7,power:1800,temp:[35,200],presets:12,win:false,touch:true,dish:false,warranty:"15 يوم إرجاع من أمازون<br>لا يوجد ضمان",brand_score:6,link:"https://link.amazon/B02Hbgfco"},
+{id:"fresh-faf-d1800w",brand:"FRESH",ar:"فريش",short:"فريش 7 لتر",price:4203,cap:7,power:1800,temp:[80,200],presets:8,win:false,touch:true,dish:"غير محدد",warranty:"15 يوم إرجاع من أمازون<br>ضمان محلي سنة",brand_score:6,link:"https://link.amazon/B01E7ador"},
+{id:"tornado-tfe-a1808ts1a",brand:"TORNADO",ar:"تورنيدو",short:"تورنيدو 8 لتر",price:7159,cap:8,power:1800,temp:[null,200],presets:9,win:false,touch:true,dish:false,warranty:"15 يوم إرجاع من أمازون<br>ضمان محلي سنة",brand_score:9,link:"https://link.amazon/B06Sc31Dc"},
+{id:"tefal-ey8018eg",brand:"TEFAL",ar:"تيفال",short:"تيفال 6.5 لتر",price:8370,cap:6.5,divider:true,power:1800,temp:[40,220],presets:8,win:false,touch:true,dish:true,warranty:"15 يوم إرجاع من أمازون<br>ضمان محلي سنة",brand_score:9,link:"https://link.amazon/B0fps4TGg"}
 ];
 const n=v=>v.toLocaleString("en-US");
 const yn=v=>v===true?"نعم":v===false?"لا":v;
 const R=[
-{k:"cap",l:"السعة",f:v=>v+" لتر",best:"max"},
+{k:"cap",l:"السعة",f:(v,p)=>v+" لتر"+(p&&p.divider?"<small>مع فاصل لتقسيم الحلة</small>":""),best:"max"},
 {k:"power",l:"القوة",f:v=>v+" وات",best:"max"},
 {k:"temp",l:"نطاق الحرارة",f:v=>v[0]==null?"حتى "+v[1]+"°م":v[0]+" – "+v[1]+"°م",best:"max",sc:v=>v[0]==null?null:v[1]-v[0]},
 {k:"presets",l:"البرامج الجاهزة",f:v=>v+(v>=3&&v<=10?" برامج":" برنامج"),best:"max"},
@@ -156,7 +158,7 @@ if(sx!=null&&sy!=null&&sx!==sy){w=(r.best==="max"?sx>sy:sx<sy)?1:2;
 const bw=w===1?x:y;
 if(W[r.k])(w===1?wa:wb).push(W[r.k](bw));
 else if(r.k==="price"&&Math.abs(x-y)>=500)(w===1?wa:wb).push("سعر أقل بـ "+n(Math.abs(x-y))+" جنيه")}}
-return"<tr><td>"+r.l+'</td><td class="'+(w===1?"win":"")+'">'+r.f(x)+'</td><td class="'+(w===2?"win":"")+'">'+r.f(y)+"</td></tr>"}).join("");
+return"<tr><td>"+r.l+'</td><td class="'+(w===1?"win":"")+'">'+r.f(x,A)+'</td><td class="'+(w===2?"win":"")+'">'+r.f(y,B)+"</td></tr>"}).join("");
 const M=[["brand_score",10,"جودة البراند (رأينا الشخصي)"," من 10"]].filter(m=>A[m[0]]!=null&&B[m[0]]!=null);
 $("barsec").style.display=M.length?"":"none";
 $("bars").innerHTML=M.map(m=>"<h4>"+m[2]+"</h4>"+[[A,"a"],[B,"b"]].map(q=>'<div class="bar"><div class="lbl"><span>'+(A.ar===B.ar?q[0].short:q[0].ar)+"</span><strong>"+q[0][m[0]]+m[3]+'</strong></div><div class="track"><div class="fill '+q[1]+'" style="width:'+q[0][m[0]]/m[1]*100+'%"></div></div></div>').join("")).join("");
