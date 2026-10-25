@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>دليل ومقارنة القلايات الهوائية في مصر | أمازون مصر</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X7SD1FVX33"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){ dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', 'G-X7SD1FVX33');
+</script>
 <script src="https://cdn.tailwindcss.com/3.4.17"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1024,6 +1031,119 @@ function initApp() {
     }
   });
 }
+
+// ===== Google Analytics (GA4): تتبع الأحداث =====
+(function () {
+  function ev(name, params) {
+    try { if (typeof gtag === "function") gtag("event", name, params || {}); } catch (e) {}
+  }
+  const itemOf = p => ({ item_id: p.id, item_name: p.short, item_brand: p.ar, price: p.price, quantity: 1 });
+  const byId = id => document.getElementById(id);
+  let src = "direct_link";
+  let lastA = -1, lastB = -1;
+
+  // مصدر الاختيار (قايمة، كتالوج، مساعد ذكي، مقارنة جاهزة، رابط مباشر)
+  document.addEventListener("change", e => {
+    if (e.target && (e.target.id === "sa" || e.target.id === "sb")) src = "dropdown";
+  }, true);
+  document.addEventListener("click", e => {
+    const t = e.target;
+    if (!t || !t.closest) return;
+    if (t.closest("#catalogGrid")) src = "catalog";
+    else if (t.closest("#finderResults")) src = "finder";
+    else if (t.closest("#quickPresets")) src = "preset";
+    else if (t.closest("#swapBtn")) src = "swap";
+  }, true);
+
+  // view_item لكل جهاز + compare_pair لكل مقارنة
+  function trackSelection() {
+    const A = a, B = b;
+    const swapped = A >= 0 && B >= 0 && A === lastB && B === lastA;
+    if (!swapped) {
+      [[A, lastA, "a"], [B, lastB, "b"]].forEach(q => {
+        if (q[0] >= 0 && q[0] !== q[1]) {
+          const p = P[q[0]];
+          ev("view_item", { currency: "EGP", value: p.price, items: [itemOf(p)], device_name: p.short, slot: q[2], source: src });
+        }
+      });
+      if (A >= 0 && B >= 0 && (A !== lastA || B !== lastB)) {
+        const ids = [P[A].id, P[B].id].sort();
+        const names = [P[A].short, P[B].short].sort((x, y) => x.localeCompare(y, "ar"));
+        ev("compare_pair", { pair: names.join(" × "), pair_ids: ids.join("|"), device_a: P[A].short, device_b: P[B].short, source: src });
+      }
+    }
+    lastA = A; lastB = B;
+  }
+  const baseRender = renderComparison;
+  renderComparison = function () {
+    baseRender.apply(this, arguments);
+    try { trackSelection(); } catch (e) {}
+  };
+
+  // buy_click: أي ضغطة على لينك عمولة، مع اسم الجهاز والمكان
+  document.addEventListener("click", e => {
+    const t = e.target;
+    const el = t && t.closest ? t.closest("a[href*='link.amazon']") : null;
+    if (!el) return;
+    const p = P.find(x => x.link === el.getAttribute("href"));
+    if (!p) return;
+    const panel = el.closest(".tab-panel");
+    const placement = el.closest("#cta") ? "cta_bottom" : el.closest("#cards") ? "top_card" : "other";
+    ev("buy_click", {
+      device_id: p.id, device_name: p.short, device_brand: p.ar, price: p.price,
+      source: panel ? panel.id : "other", placement: placement, transport_type: "beacon"
+    });
+  }, true);
+
+  // الفلترة في تبويب كل الأجهزة
+  function countResults() {
+    const g = byId("catalogGrid");
+    if (!g) return 0;
+    return new Set(Array.from(g.querySelectorAll(".select-for-comp")).map(x => x.getAttribute("data-idx"))).size;
+  }
+  const FILTERS = { capFilter: "capacity", priceFilter: "max_price", sortSelect: "sort", chkWin: "window", chkDivider: "divider", chkDish: "dishwasher", chkLocalWarranty: "local_warranty" };
+  Object.keys(FILTERS).forEach(id => {
+    const el = byId(id);
+    if (!el) return;
+    el.addEventListener("change", () => {
+      setTimeout(() => {
+        ev("filter_catalog", {
+          filter_name: FILTERS[id],
+          filter_value: el.type === "checkbox" ? (el.checked ? "on" : "off") : String(el.value),
+          results_count: countResults()
+        });
+      }, 0);
+    });
+  });
+  const searchEl = byId("searchInput");
+  let searchTimer;
+  if (searchEl) {
+    searchEl.addEventListener("input", () => {
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(() => {
+        const q = (searchEl.value || "").trim().toLowerCase().slice(0, 40);
+        if (q) ev("filter_catalog", { filter_name: "search", filter_value: q, results_count: countResults() });
+      }, 1200);
+    });
+  }
+  const resetEl = byId("resetFiltersBtn");
+  if (resetEl) resetEl.addEventListener("click", () => ev("filter_reset"));
+
+  // المساعد الذكي
+  ["qBudget", "qSize", "qPriority"].forEach(id => {
+    const el = byId(id);
+    if (!el) return;
+    el.addEventListener("change", () => {
+      setTimeout(() => {
+        const h = document.querySelector("#finderResults h3");
+        ev("finder_use", {
+          budget: byId("qBudget").value, size: byId("qSize").value, priority: byId("qPriority").value,
+          top_pick: h ? h.textContent.trim() : ""
+        });
+      }, 0);
+    });
+  });
+})();
 
 initApp();
 </script>
