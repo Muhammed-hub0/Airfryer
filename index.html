@@ -488,7 +488,8 @@ const P = [
   {id:"tefal-ey8018eg",brand:"TEFAL",ar:"تيفال",short:"تيفال 6.5 لتر",name:"Tefal Easy Fry & Grill EY8018EG – 6.5 لتر",price:7299,cap:6.5,divider:true,power:1800,temp:[40,220],presets:8,win:false,touch:true,dish:true,warranty:"15 يوم إرجاع من أمازون<br>ضمان محلي سنة",brand_score:9,link:"https://link.amazon/B0fps4TGg"},
   {id:"toshiba-af74",brand:"TOSHIBA",ar:"توشيبا",short:"توشيبا 7.4 لتر",name:"Toshiba Air Fryer AF-74CP1VREG(H) – 7.4 لتر",price:7425,cap:7.4,power:1850,temp:[1,205],presets:12,win:false,touch:true,dish:false,warranty:"15 يوم إرجاع من أمازون<br>ضمان محلي سنتين",brand_score:8.5,link:"https://link.amazon/B048QJ9FM"},
   {id:"philips-na350",brand:"PHILIPS",ar:"فيليبس",short:"فيليبس 9 لتر درجين",name:"Philips Dual Basket NA350/00 – 9 لتر",price:9699,cap:9,capNote:"سلتين منفصلتين: سلة 6 لتر وسلة 3 لتر",power:2750,temp:[40,200],presets:8,win:false,touch:true,dish:true,warranty:"15 يوم إرجاع من أمازون<br>ضمان دولي",brand_score:9.5,link:"https://link.amazon/B0hEg3Atz"},
-  {id:"ninja-flexdrawer",brand:"NINJA",ar:"نينجا",short:"نينجا 10.4 لتر",name:"Ninja Foodi FlexDrawer – 10.4 لتر",price:15525,cap:10.4,divider:true,power:2470,temp:[null,230],presets:7,win:false,touch:true,dish:true,warranty:"15 يوم إرجاع من أمازون<br>ضمان دولي",brand_score:9,link:"https://link.amazon/B0bLxubxS"}
+  {id:"ninja-flexdrawer",brand:"NINJA",ar:"نينجا",short:"نينجا 10.4 لتر",name:"Ninja Foodi FlexDrawer – 10.4 لتر",price:15525,cap:10.4,divider:true,power:2470,temp:[null,230],presets:7,win:false,touch:true,dish:true,warranty:"15 يوم إرجاع من أمازون<br>ضمان دولي",brand_score:9,link:"https://link.amazon/B0bLxubxS"},
+  {id:"philips-na555",brand:"PHILIPS",ar:"فيليبس",short:"فيليبس 9 لتر درجين بالبخار",name:"Philips 5000 Series NA555/09 – 9 لتر",price:14200,cap:9,capNote:"سلتين منفصلتين: سلة 6 لتر وسلة 3 لتر",power:2750,temp:[40,200],presets:12,presetsNote:"منها برامج مخصصة للمخبوزات بفضل ميزة البخار",win:false,touch:true,dish:true,dishNote:"وفيها تنظيف ذاتي بالبخار",warranty:"15 يوم إرجاع من أمازون<br>ضمان دولي",brand_score:9.5,link:"https://link.amazon/B01ZoCSdq"}
 ];
 
 const n = v => v.toLocaleString("en-US");
@@ -498,10 +499,10 @@ const R = [
   {k:"cap", l:"السعة", f:(v,p)=>v+" لتر"+(p&&p.divider?'<small class="block text-xs opacity-80">مع فاصل لتقسيم الحلة</small>':"")+(p&&p.capNote?'<small class="block text-xs opacity-80">'+p.capNote+'</small>':""), best:"max"},
   {k:"power", l:"القوة الكهربائية", f:v=>v+" وات", best:"max"},
   {k:"temp", l:"نطاق الحرارة", f:v=>v[0]==null?"حتى "+v[1]+"°م":v[0]+" – "+v[1]+"°م", best:"max", sc:v=>v[0]==null?null:v[1]-v[0]},
-  {k:"presets", l:"البرامج الجاهزة", f:v=>v+(v>=3&&v<=10?" برامج":" برنامج"), best:"max"},
+  {k:"presets", l:"البرامج الجاهزة", f:(v,p)=>v+(v>=3&&v<=10?" برامج":" برنامج")+(p&&p.presetsNote?'<small class="block text-xs opacity-80">'+p.presetsNote+'</small>':""), best:"max"},
   {k:"win", l:"شباك شفاف للرؤية", f:yn, best:"max", sc:v=>v===true?1:0},
   {k:"touch", l:"شاشة لمس رقمية", f:yn},
-  {k:"dish", l:"سلة تتغسل في غسالة الأطباق", f:yn, best:"max", sc:v=>v===true?1:v===false?0:null},
+  {k:"dish", l:"سلة تتغسل في غسالة الأطباق", f:(v,p)=>yn(v)+(p&&p.dishNote?'<small class="block text-xs opacity-80">'+p.dishNote+'</small>':""), best:"max", sc:v=>v===true?1:v===false?0:null},
   {k:"warranty", l:"الضمان والإرجاع", f:v=>v},
   {k:"brand_score", l:"جودة البراند (رأينا الشخصي)", f:v=>v+" من 10", best:"max"},
   {k:"price", l:"السعر على أمازون", f:v=>n(v)+" جنيه", best:"min"}
@@ -783,7 +784,7 @@ function renderCatalog() {
             '<div class="flex justify-between"><span>السعة:</span><strong style="color: var(--text);">' + p.cap + ' لتر' + (p.divider ? ' (مع فاصل)' : '') + (p.capNote ? ' (سلتين منفصلتين)' : '') + '</strong></div>' +
             '<div class="flex justify-between"><span>القوة:</span><strong style="color: var(--text);">' + p.power + ' وات</strong></div>' +
             '<div class="flex justify-between"><span>شباك شفاف:</span><strong style="color: var(--text);">' + yn(p.win) + '</strong></div>' +
-            '<div class="flex justify-between"><span>غسالة أطباق:</span><strong style="color: var(--text);">' + yn(p.dish) + '</strong></div>' +
+            '<div class="flex justify-between"><span>غسالة أطباق:</span><strong style="color: var(--text);">' + yn(p.dish) + (p.dishNote ? ' · ' + p.dishNote : '') + '</strong></div>' +
             '<div class="flex justify-between"><span>الضمان:</span><strong style="color: var(--text);">' + warrantyClean + '</strong></div>' +
           '</div>' +
         '</div>' +
@@ -824,7 +825,7 @@ function renderFullMatrix() {
         '<td class="p-3 text-center font-bold ' + (isBestCap ? 'win-cell' : '') + '">' + p.cap + ' لتر' + (p.divider ? '<div class="text-xs">مع فاصل</div>' : '') + (p.capNote ? '<div class="text-xs">' + p.capNote + '</div>' : '') + '</td>' +
         '<td class="p-3 text-center">' + p.power + ' وات</td>' +
         '<td class="p-3 text-center">' + yn(p.win) + '</td>' +
-        '<td class="p-3 text-center">' + yn(p.dish) + '</td>' +
+        '<td class="p-3 text-center">' + yn(p.dish) + (p.dishNote ? '<div class="text-xs">' + p.dishNote + '</div>' : '') + '</td>' +
         '<td class="p-3 text-center text-xs">' + p.warranty + '</td>' +
         '<td class="p-3 text-center font-bold ' + (isBestScore ? 'win-cell' : '') + '">' + p.brand_score + '/10</td>' +
         '<td class="p-3 text-center">' +
