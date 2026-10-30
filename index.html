@@ -209,6 +209,9 @@ body {
 :root[data-theme="dark"] .social-btn{color:#0b1a2b}
 .social-pill{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:12px;font-weight:700;font-size:.78rem;text-decoration:none;color:var(--text);background:var(--surface-alt);border:1px solid var(--line)}
 .social-pill:hover{border-color:var(--b);color:var(--b)}
+.acc-btn{display:block;text-align:center;padding:9px 12px;border-radius:10px;font-weight:700;font-size:.85rem;text-decoration:none;background:var(--b);color:#fff;transition:opacity .15s}
+.acc-btn:hover{opacity:.92}
+:root[data-theme="dark"] .acc-btn{color:#0b1a2b}
 </style>
 </head>
 <body>
@@ -480,6 +483,40 @@ body {
       </div>
 
       <div id="finderResults" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    </div>
+  </section>
+
+  <!-- Accessories (links only, no comparison) -->
+  <section id="accessoriesSection" class="mt-8">
+    <div class="surface-card p-4 sm:p-6">
+      <h2 class="text-lg sm:text-xl font-extrabold mb-1">إكسسوارات القلاية الهوائية</h2>
+      <p class="text-sm mb-4" style="color: var(--muted);">إكسسوارات مفيدة مع القلاية الهوائية. اضغط على أي منتج لتفتح صفحته على أمازون مصر.</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+      <div class="surface-alt rounded-xl p-3 flex flex-col justify-between gap-3 text-center">
+        <div class="font-bold text-sm sm:text-base">قوالب ورقية مقاس 24</div>
+        <a class="acc-btn" href="https://link.amazon/B05BcJ0lu" target="_blank" rel="sponsored nofollow noopener" data-acc="paper-24">شوف على أمازون</a>
+      </div>
+      <div class="surface-alt rounded-xl p-3 flex flex-col justify-between gap-3 text-center">
+        <div class="font-bold text-sm sm:text-base">قوالب ورقية مقاس 20</div>
+        <a class="acc-btn" href="https://link.amazon/B0j5t5kR6" target="_blank" rel="sponsored nofollow noopener" data-acc="paper-20">شوف على أمازون</a>
+      </div>
+      <div class="surface-alt rounded-xl p-3 flex flex-col justify-between gap-3 text-center">
+        <div class="font-bold text-sm sm:text-base">قوالب سيليكون</div>
+        <a class="acc-btn" href="https://link.amazon/B0avAHlsH" target="_blank" rel="sponsored nofollow noopener" data-acc="silicone-liners">شوف على أمازون</a>
+      </div>
+      <div class="surface-alt rounded-xl p-3 flex flex-col justify-between gap-3 text-center">
+        <div class="font-bold text-sm sm:text-base">أطباق سيليكون</div>
+        <a class="acc-btn" href="https://link.amazon/B06tGQKCG" target="_blank" rel="sponsored nofollow noopener" data-acc="silicone-plates">شوف على أمازون</a>
+      </div>
+      <div class="surface-alt rounded-xl p-3 flex flex-col justify-between gap-3 text-center">
+        <div class="font-bold text-sm sm:text-base">ورق زبدة مربعات</div>
+        <a class="acc-btn" href="https://link.amazon/B00MIT0uO" target="_blank" rel="sponsored nofollow noopener" data-acc="parchment-square">شوف على أمازون</a>
+      </div>
+      <div class="surface-alt rounded-xl p-3 flex flex-col justify-between gap-3 text-center">
+        <div class="font-bold text-sm sm:text-base">بخاخ زيت</div>
+        <a class="acc-btn" href="https://link.amazon/B0fEvdbH4" target="_blank" rel="sponsored nofollow noopener" data-acc="oil-sprayer">شوف على أمازون</a>
+      </div>
+      </div>
     </div>
   </section>
 
@@ -1185,6 +1222,12 @@ document.addEventListener("click", e => {
   const el = e.target && e.target.closest ? e.target.closest("a[data-social]") : null;
   if (!el) return;
   try { gtag("event", "social_click", { network: "facebook", social_target: el.getAttribute("data-social"), placement: el.getAttribute("data-place") || "other", transport_type: "beacon" }); } catch (err) {}
+}, true);
+
+document.addEventListener("click", e => {
+  const el = e.target && e.target.closest ? e.target.closest("a[data-acc]") : null;
+  if (!el) return;
+  try { gtag("event", "accessory_click", { accessory_name: el.getAttribute("data-acc"), placement: "accessories_section", transport_type: "beacon" }); } catch (err) {}
 }, true);
 
 initApp();
