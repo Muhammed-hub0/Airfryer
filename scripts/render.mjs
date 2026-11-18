@@ -214,7 +214,7 @@ tr.alt td{background:var(--surface-alt)}
 a{color:var(--a);text-decoration:none}
 a:hover{text-decoration:underline}
 .ft{margin:16px 0 0;color:var(--muted);font-size:12px;line-height:1.8}
-.ft img.banner{display:block;width:100%;height:auto;border-radius:16px;border:1px solid var(--line);margin-bottom:14px}
+.banner{display:block;width:100%;height:auto;border-radius:16px;border:1px solid var(--line);margin:0 0 14px}
 @media(max-width:720px){.wrap{padding:10px}select,input{min-width:0;width:100%}.fld{flex:1 1 140px}.cnt{width:100%;margin-inline-start:0}}
 </style></head><body>
 <header class="top"><div class="wrap head">
@@ -227,6 +227,7 @@ a:hover{text-decoration:underline}
 </div></header>
 <main class="wrap">
 <h1>القلايات الهوائية على أمازون مصر</h1>
+<img class="banner" src="banner.jpg" alt="مشترياتك صح — دليلك للمقارنة الذكية واختيار الأفضل" width="1024" height="390">
 <div class="bar surface-card">
   <div class="fld"><label for="fBrand">البراند</label><select id="fBrand"><option value="">الكل</option></select></div>
   <div class="fld"><label for="fCap">السعة (لتر)</label><select id="fCap"><option value="">الكل</option></select></div>
@@ -242,7 +243,6 @@ a:hover{text-decoration:underline}
 ${body}
 </tbody></table>
 <div class="ft">
-  <img class="banner" src="banner.jpg" alt="مشترياتك صح — دليلك للمقارنة الذكية واختيار الأفضل" width="1024" height="390">
   <div>آخر فحص تلقائي: ${esc(formatDate(updatedAt))} · ${rows.length} منتج</div>
   <div>كأفلييت أمازون: قد نحصل على عمولة من عمليات الشراء اللي بتحصل عن طريق روابط الصفحة، من غير أي تكلفة إضافية عليك. الأسعار والمقاسات بتتحدث تلقائيًا وقد تختلف لحظة الشراء.</div>
 </div>
