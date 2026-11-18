@@ -48,6 +48,8 @@ export const EXCLUDED_BRANDS = [
 export const FEATURED_ASINS = [
   'B0DJR78662', // فيليبس 6.2 لتر 1700 وات
   'B0CPGPD4BY', // فيليبس 9 لتر 2750 وات
+  'B0DQLM3KFX', // فيليبس 9 لتر بالبخار (5000 Series Dual Basket With Steam)
+  'B0C5XVBDMK', // تيفال 6.5 لتر 1800 وات (Easy Fry & Grill XXL EY8018EG)
   'B0DYK9SXY5', // بوش 6.1 لتر
   'B0FCS4NLY7', // ميديا 9 لتر
   'B0FQCM5738', // تورنيدو 8 لتر 1800 وات
