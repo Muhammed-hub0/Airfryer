@@ -58,7 +58,6 @@ export const FEATURED_ASINS = [
   'B0CJVNGMFL', // نينجا 10.4 لتر
   'B09CQCF1FH', // تيفال 4.2 لتر
   'B08KGDTNG6', // فيليبس 4.1 لتر
-  'B0BB2NP5B8', // بلاك أند ديكر 5.6 لتر
   'B0F1NB8JKK', // بلاك أند ديكر 7.2 لتر
 ];
 
