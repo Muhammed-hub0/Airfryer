@@ -137,6 +137,30 @@ function themeScript() {
 })();`;
 }
 
+function tabsScript() {
+  return `(function () {
+  var tabs = { featured: document.getElementById('tabFeatured'), all: document.getElementById('tabAll') };
+  var views = { featured: document.getElementById('viewFeatured'), all: document.getElementById('viewAll') };
+  if (!tabs.featured || !tabs.all) return;
+
+  function show(which) {
+    Object.keys(tabs).forEach(function (k) {
+      var on = k === which;
+      tabs[k].classList.toggle('active', on);
+      tabs[k].setAttribute('aria-selected', on ? 'true' : 'false');
+      views[k].hidden = !on;
+    });
+    try { localStorage.setItem('af-tab', which); } catch (e) {}
+  }
+
+  tabs.featured.addEventListener('click', function () { show('featured'); });
+  tabs.all.addEventListener('click', function () { show('all'); });
+  try {
+    if (localStorage.getItem('af-tab') === 'all') show('all');
+  } catch (e) {}
+})();`;
+}
+
 const HEAD_CSS = `
 :root{--bg:#f6f7f9;--surface:#ffffff;--surface-alt:#f0f3f7;--text:#1b1f24;--muted:#5d6670;--line:#e3e6ea;--a:#1c3d63;--a-soft:#e8eef6;--b:#9a6f1e;--b-soft:#f8f0de;--win:#0f7a4a;--win-soft:#e3f5ec;--accent:#b8892f;color-scheme:light}
 :root[data-theme="dark"]{--bg:#0b1a2b;--surface:#11273f;--surface-alt:#183350;--text:#eceff2;--muted:#9aa4af;--line:#27415e;--a:#86b4e8;--a-soft:#15283f;--b:#e0c080;--b-soft:#3a2f16;--win:#4fd08f;--win-soft:#13301f;--accent:#e0c080;color-scheme:dark}
@@ -157,6 +181,14 @@ header.top{background:var(--surface);border-bottom:1px solid var(--line);positio
 h1{font-size:22px;margin:18px 0 12px}
 h2.sec{font-size:17px;margin:20px 0 10px;padding-inline-start:10px;border-inline-start:4px solid var(--b)}
 h2.sec span{font-size:12px;color:var(--muted);font-weight:600;margin-inline-start:8px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 10px}
+.tab{font-family:inherit;font-size:14px;font-weight:800;padding:9px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer}
+.tab span{font-size:11px;font-weight:600;color:var(--muted);margin-inline-start:6px}
+.tab.active{background:var(--a);border-color:var(--a);color:#fff}
+.tab.active span{color:#dbe8f7}
+:root[data-theme="dark"] .tab.active{color:#0b1a2b}
+:root[data-theme="dark"] .tab.active span{color:#26415e}
+.tab:hover{border-color:var(--b)}
 `;
 
 function siteHeader(root = '') {
@@ -165,6 +197,7 @@ function siteHeader(root = '') {
   <div class="socials">
     <a class="social-pill" href="https://www.facebook.com/share/1d5zsrA3L8/" target="_blank" rel="noopener">صفحتنا</a>
     <a class="social-pill" href="https://www.facebook.com/share/g/1HzNFsMQCc/" target="_blank" rel="noopener">الجروب</a>
+    <a class="social-pill" href="https://chat.whatsapp.com/Dujjs3WZxVZ5tlEBNnZN2W?s=cl&amp;p=a&amp;iam=2" target="_blank" rel="noopener">واتساب</a>
     <button id="themeToggleBtn" class="theme-btn" type="button" title="تغيير المظهر"><span id="themeIcon">🌙</span></button>
   </div>
 </div></header>`;
@@ -206,6 +239,8 @@ tr.alt td{background:var(--surface-alt)}
 .banner{display:block;width:100%;height:auto;border-radius:16px;border:1px solid var(--line);margin:0 0 14px}
 @media(max-width:720px){
   .wrap{padding:8px}
+  .tabs{margin:10px 0 8px}
+  .tab{font-size:13px;padding:8px 10px;flex:1 1 140px}
   h1{font-size:18px;margin:12px 0 8px}
   h2.sec{font-size:15px;margin:14px 0 8px}
   .banner{margin-bottom:10px}
@@ -274,7 +309,9 @@ const tableHead = `<thead><tr><th class='c-num'></th><th class='c-img'>الصو�
 export function renderHtml(offers, options = {}) {
   const rows = visibleOffers(offers);
   const byAsin = new Map(rows.map((o) => [o.asin, o]));
-  const featured = FEATURED_ASINS.map((asin) => byAsin.get(asin)).filter(Boolean);
+  const featured = FEATURED_ASINS.map((asin) => byAsin.get(asin))
+    .filter(Boolean)
+    .sort((a, b) => a.price - b.price);
   const updatedAt = options.updatedAt || new Date().toISOString();
 
   return `<!doctype html>
@@ -294,13 +331,18 @@ ${siteHeader()}
 <main class="wrap">
 <h1>القلايات الهوائية على أمازون مصر</h1>
 <img class="banner" src="banner.jpg" alt="مشترياتك صح — دليلك للمقارنة الذكية واختيار الأفضل" width="1024" height="390">
-<h2 class="sec">ترشيحاتنا الموثوقة <span>أفضل قيمة مقابل سعر</span></h2>
+<div class="tabs" role="tablist" aria-label="اختر القائمة">
+  <button id="tabFeatured" class="tab active" type="button" role="tab" aria-selected="true" aria-controls="viewFeatured">ترشيحاتنا الموثوقة <span>أفضل قيمة مقابل سعر</span></button>
+  <button id="tabAll" class="tab" type="button" role="tab" aria-selected="false" aria-controls="viewAll">كل المتوفر <span>${rows.length} منتج</span></button>
+</div>
+<section id="viewFeatured" role="tabpanel" aria-labelledby="tabFeatured">
 <table id="tblFeatured" class="surface-card">
 ${tableHead}
 <tbody>
 ${renderRows(featured)}
 </tbody></table>
-<h2 class="sec">كل المتوفر</h2>
+</section>
+<section id="viewAll" role="tabpanel" aria-labelledby="tabAll" hidden>
 <div class="bar surface-card">
   <div class="fld"><label for="fBrand">البراند</label><select id="fBrand"><option value="">الكل</option></select></div>
   <div class="fld"><label for="fCap">السعة (لتر)</label><select id="fCap"><option value="">الكل</option></select></div>
@@ -315,6 +357,7 @@ ${tableHead}
 <tbody>
 ${renderRows(rows)}
 </tbody></table>
+</section>
 <div class="ft">
   <div>آخر فحص تلقائي: ${esc(formatDate(updatedAt))} · ${rows.length} منتج</div>
   <div>كأفلييت أمازون: قد نحصل على عمولة من عمليات الشراء اللي بتحصل عن طريق روابط الصفحة، من غير أي تكلفة إضافية عليك. الأسعار والمقاسات بتتحدث تلقائيًا وقد تختلف لحظة الشراء.</div>
@@ -322,6 +365,7 @@ ${renderRows(rows)}
 </main>
 <script>
 ${filterScript()}
+${tabsScript()}
 ${themeScript()}
 </script>
 </body></html>
