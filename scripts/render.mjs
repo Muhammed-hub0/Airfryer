@@ -359,6 +359,7 @@ ${renderRows(rows)}
 </tbody></table>
 </section>
 <div class="ft">
+  <div style="color:var(--b);font-weight:800">تنويه: يجب مراجعة السعر والمواصفات الفنية من صفحة المنتج على أمازون قبل الشراء.</div>
   <div>آخر فحص تلقائي: ${esc(formatDate(updatedAt))} · ${rows.length} منتج</div>
   <div>كأفلييت أمازون: قد نحصل على عمولة من عمليات الشراء اللي بتحصل عن طريق روابط الصفحة، من غير أي تكلفة إضافية عليك. الأسعار والمقاسات بتتحدث تلقائيًا وقد تختلف لحظة الشراء.</div>
 </div>
@@ -412,6 +413,7 @@ ${siteHeader('../')}
     <a class="buy" href="${url}" target="_blank" rel="nofollow sponsored">اشترِ من أمازون</a>
   </div>
 </div>
+<div class="note" style="color:var(--b);font-weight:700">تنويه: يجب مراجعة السعر والمواصفات الفنية من صفحة المنتج على أمازون قبل الشراء.</div>
 <div class="note">آخر فحص تلقائي: ${esc(formatDate(updatedAt))} · السعر قد يتغير لحظة الشراء.</div>
 </main>
 <script>${themeScript()}</script>
