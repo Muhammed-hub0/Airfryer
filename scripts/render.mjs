@@ -147,9 +147,17 @@ function themeScript() {
 
 function tabsScript() {
   return `(function () {
-  var tabs = { featured: document.getElementById('tabFeatured'), all: document.getElementById('tabAll') };
-  var views = { featured: document.getElementById('viewFeatured'), all: document.getElementById('viewAll') };
-  if (!tabs.featured || !tabs.all) return;
+  var tabs = {
+    featured: document.getElementById('tabFeatured'),
+    all: document.getElementById('tabAll'),
+    accessories: document.getElementById('tabAccessories')
+  };
+  var views = {
+    featured: document.getElementById('viewFeatured'),
+    all: document.getElementById('viewAll'),
+    accessories: document.getElementById('viewAccessories')
+  };
+  if (!tabs.featured || !tabs.all || !tabs.accessories) return;
 
   function show(which) {
     Object.keys(tabs).forEach(function (k) {
@@ -161,10 +169,12 @@ function tabsScript() {
     try { localStorage.setItem('af-tab', which); } catch (e) {}
   }
 
-  tabs.featured.addEventListener('click', function () { show('featured'); });
-  tabs.all.addEventListener('click', function () { show('all'); });
+  Object.keys(tabs).forEach(function (k) {
+    tabs[k].addEventListener('click', function () { show(k); });
+  });
   try {
-    if (localStorage.getItem('af-tab') === 'all') show('all');
+    var saved = localStorage.getItem('af-tab');
+    if (saved === 'all' || saved === 'accessories') show(saved);
   } catch (e) {}
 })();`;
 }
@@ -268,7 +278,7 @@ tr.alt td{background:var(--surface-alt)}
 `;
 
 const ACCESSORY_CSS = `
-.acc{padding:14px 16px 16px;margin-top:18px}
+.acc{padding:14px 16px 16px;margin-top:6px}
 .acc h2.sec{margin-top:0}
 .acc-lead{margin:0 0 12px;font-size:13px;color:var(--muted)}
 .acc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -374,6 +384,7 @@ ${siteHeader()}
 <div class="tabs" role="tablist" aria-label="اختر القائمة">
   <button id="tabFeatured" class="tab active" type="button" role="tab" aria-selected="true" aria-controls="viewFeatured">ترشيحاتنا الموثوقة <span>أفضل قيمة مقابل سعر</span></button>
   <button id="tabAll" class="tab" type="button" role="tab" aria-selected="false" aria-controls="viewAll">كل المتوفر <span>${rows.length} منتج</span></button>
+  <button id="tabAccessories" class="tab" type="button" role="tab" aria-selected="false" aria-controls="viewAccessories">إكسسوارات القلاية <span>6 منتجات</span></button>
 </div>
 <section id="viewFeatured" role="tabpanel" aria-labelledby="tabFeatured">
 <table id="tblFeatured" class="surface-card">
@@ -398,7 +409,9 @@ ${tableHead}
 ${renderRows(rows)}
 </tbody></table>
 </section>
+<section id="viewAccessories" role="tabpanel" aria-labelledby="tabAccessories" hidden>
 ${renderAccessories()}
+</section>
 <div class="ft">
   <div style="color:var(--b);font-weight:800">تنويه: يجب مراجعة السعر والمواصفات الفنية من صفحة المنتج على أمازون قبل الشراء.</div>
   <div>آخر فحص تلقائي: ${esc(formatDate(updatedAt))} · ${rows.length} منتج</div>
