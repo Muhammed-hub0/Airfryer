@@ -98,6 +98,10 @@ function applyApiItem(offer, api, history) {
     return changed;
   }
 
+  // منتجات اتأكد يدويًا إنها متاحة عبر "See All Buying Options" (بائعين تانيين).
+  // الـ API مبيشوفش Buy Box ليها، فما نزودش عداد عدم التوفر وما نخفيهوش.
+  if (offer.keepListed) return changed;
+
   offer.oosCount = (offer.oosCount || 0) + 1;
   offer.outOfStockSince = offer.outOfStockSince || date;
   offer.lastSeenOut = date;
@@ -244,7 +248,7 @@ async function main() {
     // المنتجات اللي مش راجعة من الـ API
     if (items.size > 0) {
       for (const offer of offers) {
-        if (items.has(offer.asin)) continue;
+        if (items.has(offer.asin) || offer.keepListed) continue;
         offer.missCount = (offer.missCount || 0) + 1;
         if (offer.missCount >= 3 && offer.active !== false) {
           console.log(`  اتشال (مبقاش موجود): ${offer.name || offer.asin}`);
