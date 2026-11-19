@@ -40,7 +40,7 @@
     "lastGood": "2026-11-16",
     "source": "seed",
     "missCount": 0,
-    "oosCount": 1,
+    "oosCount": 2,
     "reason": "out-of-stock",
     "outOfStockSince": "2026-11-19",
     "lastSeenOut": "2026-11-19"
@@ -81,14 +81,15 @@
     "price": 3999,
     "img": "https://m.media-amazon.com/images/I/41aJdfGLiKL._SL500_.jpg",
     "url": "https://www.amazon.eg/dp/B09GKWKDV2?tag=fineartslab-21",
-    "active": true,
+    "active": false,
     "firstSeen": "2026-11-16",
     "lastGood": "2026-11-16",
     "source": "seed",
     "missCount": 0,
-    "oosCount": 1,
+    "oosCount": 2,
     "outOfStockSince": "2026-11-19",
-    "lastSeenOut": "2026-11-19"
+    "lastSeenOut": "2026-11-19",
+    "reason": "out-of-stock"
   },
   {
     "asin": "B0C6QZNL42",
@@ -343,7 +344,7 @@
     "title": "Fresh 1800W Mechanical Air Fryer, 7 Liter Capacity",
     "warranty": "15 يوم إرجاع مجاني من أمازون | ضمان سنة من الوكيل",
     "ship": "مجاني",
-    "price": 4099,
+    "price": 4182,
     "img": "https://m.media-amazon.com/images/I/31t7NE31FRL._SL500_.jpg",
     "url": "https://www.amazon.eg/dp/B0D1VGDCNF?tag=fineartslab-21",
     "active": true,
@@ -522,14 +523,15 @@
     "price": 8199,
     "img": "https://m.media-amazon.com/images/I/31nzDm2mUbL._SL500_.jpg",
     "url": "https://www.amazon.eg/dp/B0BB2NP5B8?tag=fineartslab-21",
-    "active": true,
+    "active": false,
     "firstSeen": "2026-11-16",
     "lastGood": "2026-11-16",
     "source": "seed",
     "missCount": 0,
-    "oosCount": 1,
+    "oosCount": 2,
     "outOfStockSince": "2026-11-19",
-    "lastSeenOut": "2026-11-19"
+    "lastSeenOut": "2026-11-19",
+    "reason": "out-of-stock"
   },
   {
     "asin": "B0GY9N6ZR6",
@@ -594,7 +596,7 @@
     "lastGood": "2026-11-16",
     "source": "seed",
     "missCount": 0,
-    "oosCount": 1,
+    "oosCount": 2,
     "reason": "out-of-stock",
     "outOfStockSince": "2026-11-19",
     "lastSeenOut": "2026-11-19"
@@ -662,8 +664,10 @@
     "lastGood": "2026-11-19",
     "source": "seed",
     "missCount": 0,
-    "oosCount": 0,
-    "reason": null
+    "oosCount": 1,
+    "reason": null,
+    "outOfStockSince": "2026-11-19",
+    "lastSeenOut": "2026-11-19"
   },
   {
     "asin": "B08XQCDLXK",
@@ -701,14 +705,15 @@
     "price": 6690,
     "img": "https://m.media-amazon.com/images/I/41OIURHrzqL._SL500_.jpg",
     "url": "https://www.amazon.eg/dp/B08XQDNG71?tag=fineartslab-21",
-    "active": true,
+    "active": false,
     "firstSeen": "2026-11-16",
     "lastGood": "2026-11-16",
     "source": "seed",
     "missCount": 0,
-    "oosCount": 1,
+    "oosCount": 2,
     "outOfStockSince": "2026-11-19",
-    "lastSeenOut": "2026-11-19"
+    "lastSeenOut": "2026-11-19",
+    "reason": "out-of-stock"
   },
   {
     "asin": "B091NRLB9V",
@@ -817,7 +822,7 @@
     "lastGood": "2026-11-16",
     "source": "seed",
     "missCount": 0,
-    "oosCount": 1,
+    "oosCount": 2,
     "reason": "out-of-stock",
     "outOfStockSince": "2026-11-19",
     "lastSeenOut": "2026-11-19"
@@ -880,14 +885,15 @@
     "price": 8299,
     "img": "https://m.media-amazon.com/images/I/31QMy36Z1GL._SL500_.jpg",
     "url": "https://www.amazon.eg/dp/B0GY1DZTZN?tag=fineartslab-21",
-    "active": true,
+    "active": false,
     "firstSeen": "2026-11-16",
     "lastGood": "2026-11-16",
     "source": "seed",
     "missCount": 0,
-    "oosCount": 1,
+    "oosCount": 2,
     "outOfStockSince": "2026-11-19",
-    "lastSeenOut": "2026-11-19"
+    "lastSeenOut": "2026-11-19",
+    "reason": "out-of-stock"
   },
   {
     "asin": "B0FFHMBKCL",
@@ -1274,7 +1280,7 @@
     "title": "PHILIPS Air Fryer NA231/00 with touch panel, uses up to 90% less fat, 1700W, 6.2 Liter, with Rapid Air Technology (Black),Cooking window, Extra Large-International Warranty",
     "warranty": "15 يوم إرجاع مجاني من أمازون",
     "ship": "مجاني",
-    "price": 6117,
+    "price": 6299,
     "img": "https://m.media-amazon.com/images/I/41ptUlLhXUL._SL500_.jpg",
     "url": "https://www.amazon.eg/dp/B0D1474ZT6?tag=fineartslab-21",
     "active": true,
@@ -1585,14 +1591,15 @@
     "price": 9382,
     "img": "https://m.media-amazon.com/images/I/314kk6ih96L._SL500_.jpg",
     "url": "https://www.amazon.eg/dp/B0C4Q9131G?tag=fineartslab-21",
-    "active": true,
+    "active": false,
     "firstSeen": "2026-11-16",
     "lastGood": "2026-11-16",
     "source": "seed",
     "missCount": 0,
-    "oosCount": 1,
+    "oosCount": 2,
     "outOfStockSince": "2026-11-19",
-    "lastSeenOut": "2026-11-19"
+    "lastSeenOut": "2026-11-19",
+    "reason": "out-of-stock"
   },
   {
     "asin": "B0FXBFHBDP",
@@ -1679,8 +1686,10 @@
     "lastGood": "2026-11-19",
     "source": "seed",
     "missCount": 0,
-    "oosCount": 0,
-    "reason": null
+    "oosCount": 1,
+    "reason": null,
+    "outOfStockSince": "2026-11-19",
+    "lastSeenOut": "2026-11-19"
   },
   {
     "asin": "B0C79TRMNQ",
@@ -1847,7 +1856,7 @@
     "title": "Philips 7000 Series Airfryer Combi XXL Connected with Home ID APP - 8.3L, 2KGs, 2200W, Rapid CombiAir, Auto-Cook Programs, Food Thermometer - HD9880/90",
     "warranty": "15 يوم إرجاع مجاني من أمازون",
     "ship": "مجاني",
-    "price": 16748,
+    "price": 16292.06,
     "img": "https://m.media-amazon.com/images/I/41z28AEmxBL._SL500_.jpg",
     "url": "https://www.amazon.eg/dp/B0C7QP7951?tag=fineartslab-21",
     "active": true,
@@ -2031,8 +2040,10 @@
     "lastGood": "2026-11-19",
     "source": "manual",
     "missCount": 0,
-    "oosCount": 0,
-    "reason": null
+    "oosCount": 1,
+    "reason": null,
+    "outOfStockSince": "2026-11-19",
+    "lastSeenOut": "2026-11-19"
   },
   {
     "asin": "B08W8J6RW6",
@@ -2177,7 +2188,7 @@
     "title": "Philips Series 4000 Double Basket Stacking Fryer, 10L, RapidAir Technology, Synchronized Surface, 2 Meals at a Time, 45% Less Countertop Space, PFAS Free Ceramic Coating",
     "warranty": "15 يوم إرجاع مجاني من أمازون",
     "ship": "مجاني",
-    "price": 12158.27,
+    "price": 12463.33,
     "img": "https://m.media-amazon.com/images/I/31zN13lZ0NL._SL500_.jpg",
     "url": "https://www.amazon.eg/dp/B0FPMD7PBC?tag=fineartslab-21",
     "active": true,
