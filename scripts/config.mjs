@@ -61,6 +61,17 @@ export const FEATURED_ASINS = [
   'B0F1NB8JKK', // بلاك أند ديكر 7.2 لتر
 ];
 
+// إكسسوارات القلاية الهوائية (من الموقع القديم)
+// الروابط اتأكدت إنها بتحوّل لصفحات المنتج على أمازون.eg، والنسخة النظيفة بتتولد في render.mjs
+export const ACCESSORIES = [
+  { name: 'قوالب ورقية مقاس 24', asin: 'B0F5NB3KNP' },
+  { name: 'قوالب ورقية مقاس 20', asin: 'B0BZ841L7L' },
+  { name: 'قوالب سيليكون', asin: 'B0BDG5T19F' },
+  { name: 'أطباق سيليكون', asin: 'B0915X2BX7' },
+  { name: 'ورق زبدة مربعات', asin: 'B0FXZ56QPP' },
+  { name: 'بخاخ زيت', asin: 'B0CJF94M8J' },
+];
+
 // تحويل أسماء الماركات الإنجليزية لعربي
 export const BRAND_MAP = [
   [/black\s*&?\s*decker|black\+decker/i, 'بلاك أند ديكر'],
