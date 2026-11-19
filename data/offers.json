@@ -40,7 +40,7 @@
     "lastGood": "2026-11-16",
     "source": "seed",
     "missCount": 0,
-    "oosCount": 4,
+    "oosCount": 5,
     "reason": "out-of-stock",
     "outOfStockSince": "2026-11-19",
     "lastSeenOut": "2026-11-19"
@@ -592,7 +592,7 @@
     "lastGood": "2026-11-16",
     "source": "seed",
     "missCount": 0,
-    "oosCount": 4,
+    "oosCount": 5,
     "reason": "out-of-stock",
     "outOfStockSince": "2026-11-19",
     "lastSeenOut": "2026-11-19"
@@ -814,7 +814,7 @@
     "lastGood": "2026-11-16",
     "source": "seed",
     "missCount": 0,
-    "oosCount": 4,
+    "oosCount": 5,
     "reason": "out-of-stock",
     "outOfStockSince": "2026-11-19",
     "lastSeenOut": "2026-11-19"
@@ -2026,7 +2026,7 @@
     "lastGood": "2026-11-19",
     "source": "manual",
     "missCount": 0,
-    "oosCount": 3,
+    "oosCount": 4,
     "reason": "out-of-stock",
     "outOfStockSince": "2026-11-19",
     "lastSeenOut": "2026-11-19"
@@ -2174,7 +2174,7 @@
     "title": "Philips Series 4000 Double Basket Stacking Fryer, 10L, RapidAir Technology, Synchronized Surface, 2 Meals at a Time, 45% Less Countertop Space, PFAS Free Ceramic Coating",
     "warranty": "15 يوم إرجاع مجاني من أمازون",
     "ship": "مجاني",
-    "price": 12478.83,
+    "price": 12445.74,
     "img": "https://m.media-amazon.com/images/I/31zN13lZ0NL._SL500_.jpg",
     "url": "https://www.amazon.eg/dp/B0FPMD7PBC?tag=fineartslab-21",
     "active": true,
@@ -2248,8 +2248,10 @@
     "lastGood": "2026-11-19",
     "source": "manual-search",
     "missCount": 0,
-    "oosCount": 0,
-    "reason": null
+    "oosCount": 1,
+    "reason": null,
+    "outOfStockSince": "2026-11-19",
+    "lastSeenOut": "2026-11-19"
   },
   {
     "asin": "B0DM1KVJ9M",
