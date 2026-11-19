@@ -2,7 +2,15 @@ import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { EXCLUDED_BRANDS, FEATURED_ASINS, MAX_PRICE, MIN_PRICE } from './config.mjs';
+import {
+  ACCESSORIES,
+  EXCLUDED_BRANDS,
+  FEATURED_ASINS,
+  MARKETPLACE,
+  MAX_PRICE,
+  MIN_PRICE,
+  PARTNER_TAG,
+} from './config.mjs';
 import { productKey } from './naming.mjs';
 
 export const ROOT = fileURLToPath(new URL('..', import.meta.url));
@@ -259,6 +267,24 @@ tr.alt td{background:var(--surface-alt)}
 }
 `;
 
+const ACCESSORY_CSS = `
+.acc{padding:14px 16px 16px;margin-top:18px}
+.acc h2.sec{margin-top:0}
+.acc-lead{margin:0 0 12px;font-size:13px;color:var(--muted)}
+.acc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.acc-card{background:var(--surface-alt);border:1px solid var(--line);border-radius:12px;padding:14px 10px;text-align:center;display:flex;flex-direction:column;justify-content:space-between;gap:12px;min-height:96px}
+.acc-card b{font-size:14px;font-weight:800}
+.acc-card a{display:inline-block;padding:7px 10px;border-radius:9px;background:var(--a);color:#fff;font-size:12px;font-weight:700}
+.acc-card a:hover{text-decoration:none;opacity:.9}
+:root[data-theme="dark"] .acc-card a{color:#0b1a2b}
+@media(max-width:720px){
+  .acc{padding:12px}
+  .acc-grid{grid-template-columns:repeat(2,1fr)}
+  .acc-card b{font-size:12px}
+  .acc-card a{font-size:11px;padding:6px 8px}
+}
+`;
+
 const DETAIL_CSS = `
 .card{margin-top:14px;padding:16px;display:grid;grid-template-columns:200px 1fr;gap:18px;align-items:start}
 .pic{text-align:center}
@@ -306,6 +332,20 @@ function renderRows(rows, start = 0) {
 
 const tableHead = `<thead><tr><th class='c-num'></th><th class='c-img'>الصورة</th><th class='c-name'>الاسم</th><th class='c-cap'>السعة (لتر)</th><th class='c-watt'>القدرة (وات)</th><th class='c-war'>الضمان</th><th class='c-ship'>الشحن</th><th class='c-price'>السعر</th><th class='c-link'>الرابط</th></tr></thead>`;
 
+function renderAccessories() {
+  const cards = ACCESSORIES.map(
+    (a) =>
+      `    <div class="acc-card"><b>${esc(a.name)}</b><a href="https://${MARKETPLACE}/dp/${a.asin}?tag=${PARTNER_TAG}" target="_blank" rel="nofollow sponsored noopener">شوف على أمازون</a></div>`,
+  ).join('\n');
+  return `<section id="accessoriesSection" class="acc surface-card">
+  <h2 class="sec">إكسسوارات القلاية الهوائية</h2>
+  <p class="acc-lead">إكسسوارات مفيدة مع القلاية الهوائية. اضغط على أي منتج لتفتح صفحته على أمازون مصر.</p>
+  <div class="acc-grid">
+${cards}
+  </div>
+</section>`;
+}
+
 export function renderHtml(offers, options = {}) {
   const rows = visibleOffers(offers);
   const byAsin = new Map(rows.map((o) => [o.asin, o]));
@@ -326,7 +366,7 @@ export function renderHtml(offers, options = {}) {
 <meta property="og:image" content="og-image.jpg">
 <link rel="icon" href="logo.jpg">
 ${tracker()}
-<style>${HEAD_CSS}${TABLE_CSS}</style></head><body>
+<style>${HEAD_CSS}${TABLE_CSS}${ACCESSORY_CSS}</style></head><body>
 ${siteHeader()}
 <main class="wrap">
 <h1>القلايات الهوائية على أمازون مصر</h1>
@@ -358,6 +398,7 @@ ${tableHead}
 ${renderRows(rows)}
 </tbody></table>
 </section>
+${renderAccessories()}
 <div class="ft">
   <div style="color:var(--b);font-weight:800">تنويه: يجب مراجعة السعر والمواصفات الفنية من صفحة المنتج على أمازون قبل الشراء.</div>
   <div>آخر فحص تلقائي: ${esc(formatDate(updatedAt))} · ${rows.length} منتج</div>
