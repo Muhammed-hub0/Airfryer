@@ -77,35 +77,70 @@ function filterScript() {
   var cnt = document.getElementById('cnt');
   var total = rows.length;
 
-  function fill(sel, attr, numeric) {
+  function value(el) { return el ? el.value : ''; }
+  function limit(el) {
+    var n = parseFloat(el.value);
+    return isNaN(n) ? null : n;
+  }
+
+  // الصف بيطابق الفلاتر كلها، عدا فلتر واحد بنبني خياراته دلوقتي
+  function matches(r, skip) {
+    if (skip !== 'brand') {
+      var bv = value(fBrand);
+      if (bv && r.getAttribute('data-brand') !== bv) return false;
+    }
+    if (skip !== 'cap') {
+      var cv = value(fCap);
+      if (cv && r.getAttribute('data-cap') !== cv) return false;
+    }
+    if (skip !== 'watt') {
+      var wv = value(fWatt);
+      if (wv && r.getAttribute('data-watt') !== wv) return false;
+    }
+    var p = parseFloat(r.getAttribute('data-price'));
+    var mn = limit(fMin), mx = limit(fMax);
+    if (mn !== null && p < mn) return false;
+    if (mx !== null && p > mx) return false;
+    return true;
+  }
+
+  function fill(sel, attr, numeric, key) {
+    var current = value(sel);
     var set = {};
-    rows.forEach(function (r) { var v = r.getAttribute(attr); if (v) set[v] = 1; });
+    rows.forEach(function (r) {
+      if (!matches(r, key)) return;
+      var v = r.getAttribute(attr);
+      if (v) set[v] = 1;
+    });
     var vals = Object.keys(set);
     vals.sort(numeric
       ? function (a, b) { return parseFloat(a) - parseFloat(b); }
       : function (a, b) { return a.localeCompare(b, 'ar'); });
+    while (sel.options.length > 1) sel.remove(1);
     vals.forEach(function (v) {
       var o = document.createElement('option');
       o.value = v;
       o.textContent = v;
       sel.appendChild(o);
     });
+    sel.value = (current && vals.indexOf(current) !== -1) ? current : '';
   }
-  fill(fCap, 'data-cap', true);
-  fill(fWatt, 'data-watt', true);
-  fill(fBrand, 'data-brand', false);
+
+  function refresh() {
+    // لو اختيار اتشال، القوائم التانية تتعاد حسابها لحد ما تستقر
+    for (var pass = 0; pass < 3; pass++) {
+      var before = value(fBrand) + '|' + value(fCap) + '|' + value(fWatt);
+      fill(fBrand, 'data-brand', false, 'brand');
+      fill(fCap, 'data-cap', true, 'cap');
+      fill(fWatt, 'data-watt', true, 'watt');
+      if (value(fBrand) + '|' + value(fCap) + '|' + value(fWatt) === before) break;
+    }
+  }
 
   function apply() {
-    var b = fBrand.value, c = fCap.value, w = fWatt.value;
-    var mn = parseFloat(fMin.value), mx = parseFloat(fMax.value);
     var shown = 0;
     rows.forEach(function (r) {
-      var ok = (!b || r.getAttribute('data-brand') === b)
-            && (!c || r.getAttribute('data-cap') === c)
-            && (!w || r.getAttribute('data-watt') === w);
-      var p = parseFloat(r.getAttribute('data-price'));
-      if (!isNaN(mn)) { ok = ok && p >= mn; }
-      if (!isNaN(mx)) { ok = ok && p <= mx; }
+      var ok = matches(r, null);
       r.style.display = ok ? '' : 'none';
       r.className = ok && (shown % 2 === 1) ? 'alt' : '';
       if (ok) { shown++; }
@@ -113,15 +148,17 @@ function filterScript() {
     cnt.textContent = shown + ' من ' + total + ' منتج';
   }
 
+  function update() { refresh(); apply(); }
+
   [fBrand, fCap, fWatt, fMin, fMax].forEach(function (el) {
-    el.addEventListener('input', apply);
-    el.addEventListener('change', apply);
+    el.addEventListener('input', update);
+    el.addEventListener('change', update);
   });
   document.getElementById('fReset').addEventListener('click', function () {
     fBrand.value = ''; fCap.value = ''; fWatt.value = ''; fMin.value = ''; fMax.value = '';
-    apply();
+    update();
   });
-  apply();
+  update();
 })();`;
 }
 
