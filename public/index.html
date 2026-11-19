@@ -89,7 +89,7 @@ tr.alt td{background:var(--surface-alt)}
   .lk a{padding:5px 7px;font-size:11px}
 }
 
-.acc{padding:14px 16px 16px;margin-top:18px}
+.acc{padding:14px 16px 16px;margin-top:6px}
 .acc h2.sec{margin-top:0}
 .acc-lead{margin:0 0 12px;font-size:13px;color:var(--muted)}
 .acc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -120,6 +120,7 @@ tr.alt td{background:var(--surface-alt)}
 <div class="tabs" role="tablist" aria-label="اختر القائمة">
   <button id="tabFeatured" class="tab active" type="button" role="tab" aria-selected="true" aria-controls="viewFeatured">ترشيحاتنا الموثوقة <span>أفضل قيمة مقابل سعر</span></button>
   <button id="tabAll" class="tab" type="button" role="tab" aria-selected="false" aria-controls="viewAll">كل المتوفر <span>99 منتج</span></button>
+  <button id="tabAccessories" class="tab" type="button" role="tab" aria-selected="false" aria-controls="viewAccessories">إكسسوارات القلاية <span>6 منتجات</span></button>
 </div>
 <section id="viewFeatured" role="tabpanel" aria-labelledby="tabFeatured">
 <table id="tblFeatured" class="surface-card">
@@ -254,6 +255,7 @@ tr.alt td{background:var(--surface-alt)}
 <tr data-brand='نينجا' data-cap='9.5' data-watt='2400' data-price='80800'><td class='n c-num'>99</td><td class='im c-img'><a href='p/B0HRCKKR69.html'><img src='https://m.media-amazon.com/images/I/61kJM8a2m-L._AC_SL1397_.jpg' loading='lazy' alt='نينجا 9.5 لتر 2400 وات' style='width:76px;height:76px;object-fit:contain'></a></td><td class='nm c-name'><a href='p/B0HRCKKR69.html'>نينجا 9.5 لتر 2400 وات</a></td><td class='sp c-cap'>9.5</td><td class='sp c-watt'>2400</td><td class='w c-war'>15 يوم إرجاع مجاني من أمازون<br>ضمان سنة من الوكيل</td><td class='c-ship'>مجاني</td><td class='p c-price'>80,800.00 ج.م</td><td class='lk c-link'><a href='https://www.amazon.eg/dp/B0HRCKKR69?tag=fineartslab-21' target='_blank' rel='nofollow sponsored'>أمازون</a></td></tr>
 </tbody></table>
 </section>
+<section id="viewAccessories" role="tabpanel" aria-labelledby="tabAccessories" hidden>
 <section id="accessoriesSection" class="acc surface-card">
   <h2 class="sec">إكسسوارات القلاية الهوائية</h2>
   <p class="acc-lead">إكسسوارات مفيدة مع القلاية الهوائية. اضغط على أي منتج لتفتح صفحته على أمازون مصر.</p>
@@ -266,9 +268,10 @@ tr.alt td{background:var(--surface-alt)}
     <div class="acc-card"><b>بخاخ زيت</b><a href="https://www.amazon.eg/dp/B0CJF94M8J?tag=fineartslab-21" target="_blank" rel="nofollow sponsored noopener">شوف على أمازون</a></div>
   </div>
 </section>
+</section>
 <div class="ft">
   <div style="color:var(--b);font-weight:800">تنويه: يجب مراجعة السعر والمواصفات الفنية من صفحة المنتج على أمازون قبل الشراء.</div>
-  <div>آخر فحص تلقائي: ١٩ نوفمبر ٢٠٢٦ في ١١:٥٣ ص · 99 منتج</div>
+  <div>آخر فحص تلقائي: ١٩ نوفمبر ٢٠٢٦ في ١٢:٠٦ م · 99 منتج</div>
   <div>كأفلييت أمازون: قد نحصل على عمولة من عمليات الشراء اللي بتحصل عن طريق روابط الصفحة، من غير أي تكلفة إضافية عليك. الأسعار والمقاسات بتتحدث تلقائيًا وقد تختلف لحظة الشراء.</div>
 </div>
 </main>
@@ -330,9 +333,17 @@ tr.alt td{background:var(--surface-alt)}
   apply();
 })();
 (function () {
-  var tabs = { featured: document.getElementById('tabFeatured'), all: document.getElementById('tabAll') };
-  var views = { featured: document.getElementById('viewFeatured'), all: document.getElementById('viewAll') };
-  if (!tabs.featured || !tabs.all) return;
+  var tabs = {
+    featured: document.getElementById('tabFeatured'),
+    all: document.getElementById('tabAll'),
+    accessories: document.getElementById('tabAccessories')
+  };
+  var views = {
+    featured: document.getElementById('viewFeatured'),
+    all: document.getElementById('viewAll'),
+    accessories: document.getElementById('viewAccessories')
+  };
+  if (!tabs.featured || !tabs.all || !tabs.accessories) return;
 
   function show(which) {
     Object.keys(tabs).forEach(function (k) {
@@ -344,10 +355,12 @@ tr.alt td{background:var(--surface-alt)}
     try { localStorage.setItem('af-tab', which); } catch (e) {}
   }
 
-  tabs.featured.addEventListener('click', function () { show('featured'); });
-  tabs.all.addEventListener('click', function () { show('all'); });
+  Object.keys(tabs).forEach(function (k) {
+    tabs[k].addEventListener('click', function () { show(k); });
+  });
   try {
-    if (localStorage.getItem('af-tab') === 'all') show('all');
+    var saved = localStorage.getItem('af-tab');
+    if (saved === 'all' || saved === 'accessories') show(saved);
   } catch (e) {}
 })();
 (function () {
