@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { getItems, hasCredentials, normalizeItem, searchItems } from './amazon.mjs';
 import {
   ACCESSORY_RE,
+  AUTO_ADD_BRANDS,
   FRYER_RE,
   MAX_PRICE,
   MAX_STALE_DAYS,
@@ -11,6 +12,8 @@ import {
   PARTNER_TAG,
   SEARCH_MAX_PRICE,
 } from './config.mjs';
+
+const DEFAULT_WARRANTY = '15 يوم إرجاع مجاني من أمازون';
 import { describeProduct, isExcludedBrand } from './naming.mjs';
 import { DATA_DIR, writePublic } from './render.mjs';
 
@@ -155,6 +158,8 @@ async function findNewItems(offers) {
 
         const info = describeProduct({ title: api.title, byLine: api.byLine });
         if (isExcludedBrand(info.brand)) continue;
+        // منتجات البراندات الجديدة بتتضاف يدويًا بعد تأكيد صاحب الموقع
+        if (!AUTO_ADD_BRANDS.includes(info.brand)) continue;
         if (!info.cap && !info.watt) continue;
 
         const family = [info.brand, info.cap, info.watt, info.variant, info.model].join('|');
@@ -180,7 +185,8 @@ function makeOffer({ api, info }, date) {
     variant: info.variant,
     model: info.model,
     title: api.title,
-    warranty: '',
+    // الحد الأدنى الثابت لكل منتج؛ أي ضمان إضافي بيتم تأكيده يدويًا من صفحة أمازون
+    warranty: DEFAULT_WARRANTY,
     ship: '',
     price: api.price,
     img: api.image,
