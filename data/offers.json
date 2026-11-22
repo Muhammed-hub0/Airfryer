@@ -1059,7 +1059,7 @@
     "title": "Philips 3000 Series Airfryer 4.2L-NA322/09,black colour,Rapid air Technology for fast & even cooking,16 cooking functions,cooking window",
     "warranty": "15 يوم إرجاع مجاني من أمازون",
     "ship": "مجاني",
-    "price": 5636,
+    "price": 5650,
     "img": "https://m.media-amazon.com/images/I/31kvxbSVduL._SL500_.jpg",
     "url": "https://www.amazon.eg/dp/B0DRC9MRH3?tag=fineartslab-21",
     "active": true,
@@ -1068,7 +1068,8 @@
     "source": "seed",
     "missCount": 0,
     "oosCount": 0,
-    "reason": null
+    "reason": null,
+    "keepPrice": true
   },
   {
     "asin": "B0D8QNH6HK",
@@ -2163,7 +2164,7 @@
     "title": "Philips Airfryer 3000 Series 7.2L, Cooking Window, 16-In-1 Airfryer, Rapidair Plus Technology, Fat Removal, Homeid Recipe App, Easy To Clean (Na342/09), Black Body/Copper Handle",
     "warranty": "15 يوم إرجاع مجاني من أمازون",
     "ship": "مجاني",
-    "price": 10300,
+    "price": 10399,
     "img": "https://m.media-amazon.com/images/I/31H4ECNXAjL._SL500_.jpg",
     "url": "https://www.amazon.eg/dp/B0D9W76ZDV?tag=fineartslab-21",
     "active": true,
@@ -2172,7 +2173,8 @@
     "source": "manual",
     "missCount": 0,
     "oosCount": 0,
-    "reason": null
+    "reason": null,
+    "keepPrice": true
   },
   {
     "asin": "B0FPMD7PBC",
