@@ -14,6 +14,7 @@ import {
 } from './config.mjs';
 
 const DEFAULT_WARRANTY = '15 يوم إرجاع مجاني من أمازون';
+const DEFAULT_SHIP = 'مجاني';
 import { describeProduct, isExcludedBrand } from './naming.mjs';
 import { DATA_DIR, writePublic } from './render.mjs';
 
@@ -187,7 +188,7 @@ function makeOffer({ api, info }, date) {
     title: api.title,
     // الحد الأدنى الثابت لكل منتج؛ أي ضمان إضافي بيتم تأكيده يدويًا من صفحة أمازون
     warranty: DEFAULT_WARRANTY,
-    ship: '',
+    ship: DEFAULT_SHIP,
     price: api.price,
     img: api.image,
     url: productUrl(api.asin),
@@ -219,14 +220,19 @@ async function main() {
   }
   const history = (await loadJson(historyPath, {})) || {};
 
-  // كل الروابط لازم تشيل تاج الأفلييت
-  for (const offer of offers) {
-    if (offer.asin) offer.url = productUrl(offer.asin);
-  }
-
   const renderOnly = process.argv.includes('--render-only') || !hasCredentials();
   let changes = 0;
   let added = 0;
+
+  // كل الروابط لازم تشيل تاج الأفلييت، وأي شحن فاضي يتكتب "مجاني" تلقائيًا.
+  // المنتجات اللي اتأكد يدويًا إن الشحن مدفوع (مثلاً 26 جنيه) ليها قيمة ومش هتتلمس.
+  for (const offer of offers) {
+    if (offer.asin) offer.url = productUrl(offer.asin);
+    if (offer.active !== false && !offer.ship) {
+      offer.ship = DEFAULT_SHIP;
+      changes++;
+    }
+  }
 
   if (renderOnly) {
     console.log(
