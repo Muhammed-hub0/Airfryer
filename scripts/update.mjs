@@ -80,7 +80,8 @@ function applyApiItem(offer, api, history) {
   const inStock = usableCondition && hasPrice && (!api.availability || IN_STOCK.has(api.availability));
 
   if (inStock) {
-    if (Number(offer.price) !== api.price) {
+    // أسعار اتأكدنا منها يدويًا من Buy Box — الـ API ممكن يرجع سعر عرض تاني أقل، فما نكتبش فوقه.
+    if (!offer.keepPrice && Number(offer.price) !== api.price) {
       offer.price = api.price;
       recordPrice(history, offer.asin, api.price);
       changed = true;
