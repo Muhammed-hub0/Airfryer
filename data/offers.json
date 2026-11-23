@@ -1069,8 +1069,7 @@
     "source": "seed",
     "missCount": 0,
     "oosCount": 0,
-    "reason": null,
-    "keepPrice": true
+    "reason": null
   },
   {
     "asin": "B0D8QNH6HK",
@@ -2176,7 +2175,6 @@
     "missCount": 0,
     "oosCount": 0,
     "reason": null,
-    "keepPrice": true,
     "lastSeenOut": "2026-11-22"
   },
   {
