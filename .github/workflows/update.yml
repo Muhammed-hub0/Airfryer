@@ -16,12 +16,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - name: تحميل الملفات
         uses: actions/checkout@v4
@@ -55,6 +52,14 @@ jobs:
         with:
           path: public
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
       - name: النشر على GitHub Pages
         id: deploy
         uses: actions/deploy-pages@v4
